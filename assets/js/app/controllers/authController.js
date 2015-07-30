@@ -6,7 +6,7 @@ app.controller('AuthController', ['$http', '$scope',
 
 		me.login = function(){
 			me.message = undefined;
-			$http.post('/auth/email/' + me.path, me.model)
+			$http.post('/auth/email/', me.model)
 			.success(function(data){	
 				if(!data.success){
 					me.message = data.message;

@@ -1,0 +1,14 @@
+body{
+	background: url(/images/background.jpg);
+	max-width: 1200px;
+	min-width: 1200px;
+  	margin: auto;
+  	padding-top: 10px;
+}
+.clear{
+	float: none;
+	clear: both;
+}
+.center{
+	text-align: center;
+}

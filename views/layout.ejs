@@ -1,29 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>Puzzle</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
   
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+    <link href="css/roboto.min.css" rel="stylesheet">
+    <link href="css/material.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
-    
-    <script type="text/javascript" src='/js/lib/angular.min.js'></script>
-    <script type="text/javascript" src='/js/app/app.js'></script>
-    <script type="text/javascript" src='/js/app/controllers/authController.js'></script>
-    
     
   </head>
 
-  <body ng-app='puzzle' ng-controller='AuthController as auth'
+  <body ng-app='puzzle'
+    ng-show='true'
+    class='ng-hide'
+   ng-controller='AuthController as auth'
     ng-init='
     <% if(currentUser) { %>
       auth.loggedIn=true;auth.currentUser=<%-JSON.stringify(currentUser)%>; 
     <% } %>
      '>
-    <%- body %>
+    <div class='contaner'>
+      <div class='jumbotron'>
+        <h1>Balance of power goes here</h1>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>
+          <div>Date here</div>
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Please, enter</h3>
+              </div>
+              <div class="panel-body">
+                  <form ng-submit='auth.login()'>
+                      <div 
+                      ng-show='auth.message'
+                      class='clear alert alert-dismissable alert-danger'>
+                        {{auth.message}}
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail" class="col-lg-12 control-label">Email</label>
+                        <div class="col-lg-12">
+                            <input type='text' class='form-control' id="inputEmail" 
+                            ng-model='model.email' />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="col-lg-12 control-label">Password</label>
+                        <div class="col-lg-12">
+                            <input type='text' class='form-control' id="password" 
+                            ng-model='model.password' />
+                        </div>
+                      </div>
+                      <div class='clear'>
+                        <button type="submit" class="btn btn-primary pull-right">Login</button>
+                      </div>
+                      <div class='clear center'>
+                        <a href="/register">Sign up</a>
+                      </div>
+                  </form>
+              </div>
+          </div>
+        </div>
+        <div class='col-md-8'>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <%- body %>
+              </div>
+          </div>          
+        </div>
+        <div class='col-md-2'>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  Basic panel
+              </div>
+          </div>
+        </div>
+      </div>      
+    </div>
 
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+    <script src="js/ripples.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
 
+    <script type="text/javascript" src='/js/lib/angular.min.js'></script>
+    <script type="text/javascript" src='/js/app/app.js'></script>
+    <script type="text/javascript" src='/js/app/controllers/authController.js'></script>
   </body>
 </html>
