@@ -12,3 +12,33 @@ body{
 .center{
 	text-align: center;
 }
+ul{
+	list-style: none;
+}
+.icon-stub{
+	margin: 10px auto;
+	clear: both;
+	float: none;
+	height: 40px;
+	width: 40px;
+	background: navy;
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+.margin-top{
+	margin-top:20px;
+}
+.links-section{
+	background: rgba(255,255,255,0.8);
+}
+.links-section .panel-body{
+	position: relative;
+}
+img.background{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
