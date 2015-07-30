@@ -8,7 +8,48 @@
 module.exports = {
 
   attributes: {
+  	email: {
+	    type: 'email',
+	    unique: true
+	},
+	password: {
+	    type: 'string'	    
+	},
+	name: {
+	    type: 'string',
+	},
+	profilePicSmall: {
+		type: 'string'
+	},
+	profilePicLarge: {
+		type: 'string'
+	},
+	recoveryKey: {
+		type: 'string'
+	},	
 
+	isAdmin:{
+		type:'boolean'
+	},
+
+	fb_token: {
+	    type: 'string',
+	},
+	fb_id: {
+	    type: 'string',
+      	unique: true
+	},
+
+	toJSON: function() {
+      var obj = this.toObject();
+      delete obj.fb_token;
+      delete obj.fb_id;
+      delete obj.vk_token;
+      delete obj.vk_id;
+      delete obj.password;
+      delete obj.email;
+      return obj;
+    },
   }
 };
 
