@@ -11,6 +11,7 @@
  * For more information on configuring the session, check out:
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.session.html
  */
+ var mongoUri = process.env.PUZZLE_MONGOLAB_URI + '/_sessions';
 
 module.exports.session = {
 
@@ -31,9 +32,12 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // cookie: {
-  //   maxAge: 24 * 60 * 60 * 1000
-  // },
+  cookie: {
+    maxAge: 100 * 24 * 60 * 60 * 1000
+  },
+
+  adapter: 'mongo',
+  url: mongoUri,
 
   /***************************************************************************
   *                                                                          *
