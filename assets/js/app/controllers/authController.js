@@ -32,8 +32,8 @@ app.controller('AuthController', ['$http', '$scope',
 			if(!me.model.password || me.model.password.length < 6){
 				me.message += ' Password should be at least 6 characters long.'
 			}			
-			if(!me.terms){
-				me.message += ' You should accept terms of service.'
+			if(!me.model.team){
+				me.message += ' You should select your team.'	
 			}
 			if(me.message){
 				return false;

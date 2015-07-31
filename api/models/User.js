@@ -18,6 +18,10 @@ module.exports = {
 	name: {
 	    type: 'string',
 	},
+	team:{
+		type: 'string',
+		enum: ['astu', 'blackdragon', 'sorcesec']	
+	}
 	profilePicSmall: {
 		type: 'string'
 	},
