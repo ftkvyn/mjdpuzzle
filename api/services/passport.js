@@ -73,6 +73,11 @@ passport.use(new FacebookStrategy({
               });
             });    
           }else{
+              if(!req.session.register){
+                return done(err, null, {
+                    message: 'Account not found. You should Sign up.'
+                  });
+              }
               User.create({
                 fb_id: profile.id,
                 fb_token: accessToken,

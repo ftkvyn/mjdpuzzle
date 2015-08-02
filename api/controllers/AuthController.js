@@ -26,6 +26,10 @@ module.exports = {
   		return res.redirect('/register');
   	}
     req.session.team = req.params.team;
+    req.session.register = true;
+  }
+  else{
+    req.session.register = false;   
   }
   passport.authenticate('facebook', { scope: ['email', 'user_about_me']},
         function (err, user) {
