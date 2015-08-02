@@ -55,7 +55,11 @@ passport.use(new FacebookStrategy({
     findByFacebookId(profile.id, function (err, user) {
       // Create a new User if it doesn't exist yet
       if (!user) {
-        findByEmail(profile.emails[0].value, function (err, user) {
+        var email = 'noemail';
+        if(profile && profile.emails && profile.emails[0]){
+          email = profile.emails[0].value;
+        }
+        findByEmail(email, function (err, user) {
           if(user){
             // console.log('Connect fb to user user');
             user.fb_id = profile.id;
@@ -73,17 +77,14 @@ passport.use(new FacebookStrategy({
               });
             });    
           }else{
-              if(!req.session.register){
-                return done(err, null, {
-                    message: 'Account not found. You should Sign up.'
-                  });
+              if(email == 'noemail'){
+                email = null;
               }
               User.create({
                 fb_id: profile.id,
                 fb_token: accessToken,
                 name: profile.displayName,
-                team: req.session.team,
-                email: profile.emails[0].value,
+                email: email,
                 profilePicSmall: 'http://graph.facebook.com/' + profile.id + '/picture',
                 profilePicLarge: 'http://graph.facebook.com/' + profile.id + '/picture?type=large',
               }).exec(function (err, user) {

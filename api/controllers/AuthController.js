@@ -41,7 +41,18 @@ module.exports = {
         function (err, user, info) {
           if(user){
             req.session.user = user;
-            return res.redirect('/profile/' + user.id);
+            if(!user.team)
+            {
+              User.update({id: user.id}, {team: req.session.team || "sorcesec"})
+              .exec(function(err, result){
+                  req.session.team = null;
+                  req.session.user = result[0];
+                  return res.redirect('/profile/' + user.id);
+              })
+            }else{
+              req.session.team = null;
+              return res.redirect('/profile/' + user.id);
+            }
           }
           else{
             console.log(info);
