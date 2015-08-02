@@ -21,7 +21,7 @@ module.exports = {
 	team:{
 		type: 'string',
 		enum: ['astu', 'blackdragon', 'sorcesec']	
-	}
+	},
 	profilePicSmall: {
 		type: 'string'
 	},
