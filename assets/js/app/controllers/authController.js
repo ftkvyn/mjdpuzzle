@@ -2,7 +2,7 @@ app.controller('AuthController', ['$http', '$scope',
 	function($http, $scope){
 		var me = this;
 		me.model = {};
-		me.message = undefined;
+		me.message = null;
 
 		me.login = function(){
 			me.message = undefined;
@@ -20,42 +20,72 @@ app.controller('AuthController', ['$http', '$scope',
 			});
 		}
 
-		me.validate = function(){
-			me.message = '';
+		me.validate = function(showMessage){
+			me.model.message = '';
+			var message = '';
 			if(!me.model.name){
-				me.message += 'Name is required.'
+				message += 'Name is required.'
 			}
 			var re = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)*$/i
 			if(!me.model.email || !re.test(me.model.email)){
-				me.message += ' Email is required.'
+				message += ' Email is required.'
 			}
 			if(!me.model.password || me.model.password.length < 6){
-				me.message += ' Password should be at least 6 characters long.'
+				message += ' Password should be at least 6 characters long.'
+			}
+			if(me.model.password != me.model.passwordConfirm){
+				message += ' Password should mach confirmation.'
 			}			
 			if(!me.model.team){
-				me.message += ' You should select your team.'	
+				message += ' You should select your team.'	
 			}
-			if(me.message){
+			if(!me.model.captcha){
+				message += 'Code is required.'
+			}
+			if(showMessage){
+				me.model.message = message;
+			}
+			if(message){
 				return false;
 			}
+			return true;
+		}
+
+		me.validateFb = function(showMessage){
+			me.model.message = '';
+			var message = '';
+			if(!me.model.team){
+				message += ' You should select your team.'	
+			}
+			if(!me.model.captcha){
+				message += 'Code is required.'
+			}
+			if(showMessage){
+				message = message;
+			}
+			if(message){
+				return false;
+			}
+			return true;
 		}
 
 		me.register = function(data){
-			if(!me.validate()){
+			if(!me.validate(true)){
 				return;
 			}
 			if(me.registering){
 				return;
 			}
 			me.registering = true;
-			me.message = '';
+			me.model.message = '';
 			$http.post('/auth/register', me.model)
 			.success(function(data){	
+				me.registering = false;
 				if(!data.success){
 					if(data.badCaptcha){
-						me.message = 'Captcha is wrong';
+						me.model.message = 'Captcha is wrong';
 					}else{
-						me.message = data.message;
+						me.model.message = data.message;
 						return;
 					}					
 				}else{
@@ -64,6 +94,7 @@ app.controller('AuthController', ['$http', '$scope',
 				}
 			})
 			.error(function(data){
+				me.registering = false;
 				console.log(data);
 				console.log('Error occured while registering.');
 				alert(JSON.stringify(data));

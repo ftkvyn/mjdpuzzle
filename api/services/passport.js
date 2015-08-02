@@ -77,6 +77,7 @@ passport.use(new FacebookStrategy({
                 fb_id: profile.id,
                 fb_token: accessToken,
                 name: profile.displayName,
+                team: req.session.team,
                 email: profile.emails[0].value,
                 profilePicSmall: 'http://graph.facebook.com/' + profile.id + '/picture',
                 profilePicLarge: 'http://graph.facebook.com/' + profile.id + '/picture?type=large',

@@ -6,43 +6,7 @@
 		To use the site and join a team, you need to register an account. Please enter your details below. 
 	</div>
 	<div class='margin-top'>
-		<form class="form-horizontal" ng-send='auth.register()'>
-		    <fieldset class='margin-top'>
-		        <legend>Enter your details</legend>
-		        <div class="form-group">
-		            <label for="name" class="col-md-3 control-label">User name</label>
-		            <div class="col-md-9">
-		                <input type="text" 
-		                ng-model='auth.model.name'
-		                class="form-control" id="name" placeholder="User name">
-		            </div>
-		        </div>
-		        <div class="form-group">
-		            <label for="inputEmail" class="col-md-3 control-label">Email</label>
-		            <div class="col-md-9">
-		                <input type="email" 
-		                ng-model='auth.model.email'
-		                class="form-control" id="inputEmail" placeholder="Email">
-		            </div>
-		        </div>
-		        <div class="form-group">
-		            <label for="pass" class="col-md-3 control-label">Password</label>
-		            <div class="col-md-9">
-		                <input type="password"
-		                 ng-model='auth.model.password'
-		                 class="form-control" id="pass" placeholder="Password">
-		            </div>
-		        </div>
-		        <div class="form-group">
-		            <label for="pass-conf" class="col-md-3 control-label">Confirm password</label>
-		            <div class="col-md-9">
-		                <input type="password" 
-		                ng-model='auth.model.passwordConfirm'
-		                class="form-control" id="pass-conf" placeholder="Confirm password">
-		            </div>
-		        </div>
-		    </fieldset>
-
+		<form class="form-horizontal">
 		    <fieldset class='margin-top'>
 		        <legend>Choose your team 
 		        	<span class="badge" title='Choose wisely, you cannor change easily...'>?</span></legend>
@@ -87,11 +51,65 @@
 		            </div>
 		        </div>
 		    </fieldset>
+		    <div class='error' ng-hide='auth.message'>
+		    	<% if(message) { %>
+			      <%- message%>
+			    <% } %>		
+		    </div>
+		    <div class='error' ng-show='auth.model.message'>
+		    	{{auth.model.message}}
+		    </div>
+		    <fieldset class='margin-top'>
+		    	<div class='col-md-6' style='border-right:1px solid #d2d2d2'>
+			        <legend>Enter your details</legend>
+			        <div class="form-group">
+			            <label for="name" class="col-md-3 control-label">User name</label>
+			            <div class="col-md-9">
+			                <input type="text" 
+			                ng-model='auth.model.name'
+			                class="form-control" id="name" placeholder="User name">
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            <label for="inputEmail" class="col-md-3 control-label">Email</label>
+			            <div class="col-md-9">
+			                <input type="email" 
+			                ng-model='auth.model.email'
+			                class="form-control" id="inputEmail" placeholder="Email">
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            <label for="pass" class="col-md-3 control-label">Password</label>
+			            <div class="col-md-9">
+			                <input type="password"
+			                 ng-model='auth.model.password'
+			                 class="form-control" id="pass" placeholder="Password">
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            <label for="pass-conf" class="col-md-3 control-label">Confirm password</label>
+			            <div class="col-md-9">
+			                <input type="password" 
+			                ng-model='auth.model.passwordConfirm'
+			                class="form-control" id="pass-conf" placeholder="Confirm password">
+			            </div>
+			        </div>
+			        <div class="form-group center">
+			            <button type='submit' 
+			            ng-click='auth.register()'
+			            ng-disabled='!auth.validate()' class='btn btn-success btn-raised'>Sign-up</button>
+			        </div>
+		        </div>
+		        <div class='col-md-6'>
+		        	<legend>Or use facebook account</legend>
+		        	<div class="form-group center">
+			            <a ng-href='/auth/facebook/true/{{auth.model.team}}/{{auth.model.captcha}}' ng-disabled='!auth.validateFb()' class='btn btn-info btn-raised'>Login with facebook</a>
+			        </div>
+		        </div>
+		    </fieldset>
 		    <fieldset class='margin-top center'>
 		        <p>By registering to this site, you agree to our <a href="/terms">Terms & Conditions</a> </p>
-		        <div class="form-group center">
-		            <button type='submit' ng-disabled='!auth.validate()' class='btn btn-success btn-raised'>Sign-up</button>
-		        </div>
+		        
 		    </fieldset>
 		</form>
 	</div>

@@ -13,13 +13,21 @@ module.exports = {
 	},
 
 	register: function(req,res){
-		if(!res.locals.message){
-			res.locals.message = '';
+		res.locals.message = null;
+		req.session.message = null;
+		if(!req.session.message){
+			req.session.message = '';
 		}
-		req.session.correctCaptcha = 'Mellon';
+		req.session.correctCaptcha = 'mellon';
+		req.session.captcha = null;
+		req.session.team = null;
 		res.view('register', {
-			locals:{currentUser : req.session.user}
+			locals:{currentUser : req.session.user, message: req.session.message}
 		});		
 	},
+
+	profile: function(req, res){
+		res.redirect('/');
+	}
 };
 

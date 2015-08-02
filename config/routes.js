@@ -26,6 +26,8 @@ module.exports.routes = {
 
   '/register': 'ViewsController.register',
 
+  '/profile/:id?': 'ViewsController.profile',
+
   // Auth
   'post /auth/email': 'AuthController.loginByEmail',
 
@@ -33,7 +35,7 @@ module.exports.routes = {
 
   'get /auth/facebook/callback': 'AuthController.fb_authenticate_callback',
 
-  'get /auth/facebook': 'AuthController.fb_authenticate',
+  'get /auth/facebook/:reg?/:team?/:captcha?': 'AuthController.fb_authenticate',
 
   'get /auth/logout': 'AuthController.logout',
 

@@ -17,15 +17,19 @@ module.exports = {
   },
 
   fb_authenticate: function (req, res, next) {
-  	var captcha = req.body.captcha;
-	var correctCaptcha = req.session.correctCaptcha;
-	if(captcha != correctCaptcha){
-		res.locals.message = 'Wrong captcha';
-		return res.redirect('/register');
-	}
-    passport.authenticate('facebook', { scope: ['email', 'user_about_me']},
+  if(req.params.register){
+    var captcha = req.params.captcha || '';
+    captcha = captcha.toLocaleLowerCase();
+  	var correctCaptcha = req.session.correctCaptcha;
+  	if(captcha != correctCaptcha){
+  		res.locals.message = 'Wrong captcha';
+  		return res.redirect('/register');
+  	}
+    req.session.team = req.params.team;
+  }
+  passport.authenticate('facebook', { scope: ['email', 'user_about_me']},
         function (err, user) {
-    })(req, res, next);
+  })(req, res, next);
   },
 
   fb_authenticate_callback: function (req, res, next) {
