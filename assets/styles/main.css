@@ -55,3 +55,15 @@ img.background{
 	color: red;
 	font-size: 24px;
 }
+.profile-pic{margin: auto;height: 200px;max-width: 200px;}
+.ch-label{text-align: right;}
+.ch-tag{float: left;
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  height: 24px;
+  margin: 3px;
+  padding: 0px 3px 3px 3px;
+  line-height: 20px;
+}
+.ch-tag.complete{background: green;color: white;font-weight: bold;}

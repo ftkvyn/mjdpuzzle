@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Puzzle - admin</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+    <link href="/css/roboto.min.css" rel="stylesheet">
+    <link href="/css/material.min.css" rel="stylesheet">
+    <link href="/css/ripples.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    
+  </head>
+
+  <body ng-app='puzzle'
+    ng-show='true'
+    class='ng-hide'
+   ng-controller='AuthController as auth'>
+    <div class='contaner'>
+      <div class='jumbotron center'>
+        <h1>Admin module</h1>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'></div>
+        <div class='col-md-8'>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  Content
+              </div>
+          </div>          
+        </div>
+        <div class='col-md-2'>
+        </div>
+      </div>            
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="/js/ripples.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
+
+    <script type="text/javascript" src='/js/lib/angular.min.js'></script>
+    <script type="text/javascript" src='/js/app/app.js'></script>
+    <script type="text/javascript" src='/js/app/controllers/authController.js'></script>
+  </body>
+</html>

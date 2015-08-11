@@ -31,6 +31,9 @@ module.exports = {
 	recoveryKey: {
 		type: 'string'
 	},	
+	lastVisit:{
+		type:'datetime'
+	},
 
 	isAdmin:{
 		type:'boolean'

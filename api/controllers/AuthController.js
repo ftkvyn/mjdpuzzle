@@ -152,10 +152,10 @@ module.exports = {
                 return res.badRequest('Error.');
               }else{
                 var pic = gravatar.url(email, {
-                  size:50
+                  size:50, default:'retro'
                 });
                 var picLarge = gravatar.url(email, {
-                  size:200
+                  size:200, default:'retro'
                 });
                 var userData = {
                   email: email,

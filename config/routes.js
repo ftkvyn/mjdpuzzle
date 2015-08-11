@@ -28,6 +28,8 @@ module.exports.routes = {
 
   '/profile/:id?': 'ViewsController.profile',
 
+  '/admin': 'ViewsController.admin',
+
   // Auth
   'post /auth/email': 'AuthController.loginByEmail',
 
