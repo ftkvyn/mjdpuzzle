@@ -54,7 +54,6 @@ module.exports = {
       delete obj.vk_token;
       delete obj.vk_id;
       delete obj.password;
-      delete obj.email;
       return obj;
     },
   }

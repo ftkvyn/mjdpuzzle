@@ -25,6 +25,21 @@ ul{
 	border: 1px solid gray;
 	border-radius: 4px;
 }
+.icon{
+	margin: 10px auto;
+	clear: both;
+	float: none;
+	height: 40px;
+	width: 40px;
+	cursor: pointer;
+}
+.pic-small{
+	max-width: 100px;
+	max-height: 50px;
+	border-radius: 50px;
+	border: 2px solid white;
+	box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12); 
+}
 .margin-top{
 	margin-top:20px;
 }

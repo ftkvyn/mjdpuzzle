@@ -28,6 +28,12 @@ module.exports.routes = {
 
   '/profile/:id?': 'ViewsController.profile',
 
+  '/edit/:id?': 'ViewsController.editProfile',
+
+  '/recoverPassword': 'ViewsController.recoverPassword',  
+
+  '/rankings': 'ViewsController.rankings',  
+
   '/admin': 'ViewsController.admin',
 
   // Auth

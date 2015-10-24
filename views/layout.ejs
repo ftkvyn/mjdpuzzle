@@ -65,6 +65,9 @@
                         <a href="/register">Sign up</a>
                       </div>
                       <div class='clear center'>
+                        <a href="/recoverPassword">Forgot password?</a>
+                      </div>
+                      <div class='clear center'>
                         <h3>OR</h3>
                         Login with your facebook account
                       </div>
@@ -73,7 +76,7 @@
                       </div>
                       <div class='clear center'>
                         <a href="/register">Sign up</a>
-                      </div>
+                      </div>                      
                   </form>
               </div>
           </div>
@@ -83,7 +86,7 @@
               </div>
               <div class="panel-body">
                   <img style='width: 100%;' ng-src="{{auth.currentUser.profilePicLarge}}"/>
-                  <a href="/profile">Profile</a><br/>
+                  <a href="/profile">Profile </a><a href="/edit"> (edit)</a><br/>
                   <a href="/auth/logout">Log out</a>
               </div>
           </div>
@@ -146,16 +149,19 @@
           </div>
           <div class='row'>
             <div class='col-md-4'>
-              <div class='icon-stub'></div>
-              Facebook
+              <div class='icon'>
+                <img src="/images/facebook_40.png" alt='Facebook' title='Facebook'>
+              </div>              
             </div>
             <div class='col-md-4'>
-              <div class='icon-stub'></div>
-              Twitter
+              <div class='icon'>
+                <img src="/images/twitter-icon.png" alt='Twitter' title='Twitter'>
+              </div>              
             </div>
             <div class='col-md-4'>
-              <div class='icon-stub'></div>
-              Youtube
+              <div class='icon'>
+                <img src="/images/youtube-small.png" alt='Youtube' title='Youtube'>
+              </div>              
             </div>
           </div>
           <div class="panel panel-default margin-top" style='height:400px;'>

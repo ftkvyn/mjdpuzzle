@@ -45,9 +45,40 @@ module.exports = {
 		})
 	},
 
+	editProfile: function(req, res){
+		var userId = req.params.id;
+		if(!userId && !req.session.user){
+			return	res.redirect('/register');
+		}
+		if(!userId){
+			userId = req.session.user.id;
+		}
+		User.findOne(userId).exec(function(err, user){
+			if(err || !user){
+				console.log(err);
+				return res.redirect('/notFound');
+			}
+			res.view('editProfile', {
+				locals:{currentUser : req.session.user, user: user, message: req.session.message}
+			});	
+		})
+	},
+
 	admin: function(req,res){
 		res.locals.layout = null;
 		res.view('admin');		
+	},
+
+	recoverPassword: function(req,res){
+		res.view('recoverPassword', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
+
+	rankings: function(req,res){
+		res.view('rankings', {
+			locals:{currentUser : req.session.user}
+		});		
 	},
 };
 

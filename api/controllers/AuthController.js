@@ -76,6 +76,12 @@ module.exports = {
   loginByEmail: function(req, res){
       var email = req.body.email;
       var password = req.body.password;
+      if(!email || !password){
+        return res.send({
+              success: false,
+              message: 'Please, enter email and password.'
+            });
+      }
       User.findOne({email:email}).exec(
         function(err,user){
           if(err){
