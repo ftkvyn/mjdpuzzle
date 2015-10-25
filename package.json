@@ -1,5 +1,9 @@
 {
   "name": "mjdpuzzle",
+  "engines": {
+    "node": "0.10.30",
+    "npm": "1.4.21"
+  },
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
