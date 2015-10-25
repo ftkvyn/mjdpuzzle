@@ -80,5 +80,35 @@ module.exports = {
 			locals:{currentUser : req.session.user}
 		});		
 	},
+
+	points: function(req,res){
+		res.view('points', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
+
+	challenges: function(req,res){
+		res.view('challenges', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
+
+	about: function(req,res){
+		res.view('about', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
+
+	books: function(req,res){
+		res.view('books', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
+
+	game: function(req,res){
+		res.view('game', {
+			locals:{currentUser : req.session.user}
+		});		
+	},
 };
 

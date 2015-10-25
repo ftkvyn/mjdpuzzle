@@ -5,6 +5,8 @@ body{
   	margin: auto;
   	padding-top: 10px;
 }
+.tabs{width: 100%; text-align: right;  margin-bottom: 4px;}
+.tabs div{padding: 5px;margin: 5px -1px 0 -3px; background: white;border: 1px solid #ddd;display: inline;}
 .clear{
 	float: none;
 	clear: both;
@@ -82,3 +84,30 @@ img.background{
   line-height: 20px;
 }
 .ch-tag.complete{background: green;color: white;font-weight: bold;}
+.point-container{padding: 0 60px;margin-top: 20px;}
+.point-container h3{margin-left: -40px;}
+.point-container table tr td{border: none;}
+.challenges{list-style: none;}
+.challenges li img{max-height: 105px; max-width: 105px; float: left;margin-right: 20px;}
+.challenges li .container{width: 100%}
+.challenges li .info{float: left;width:60%;}
+.challenges li .info tr td{border: none;}
+.challenges li .info .name{font-weight: bold;width: 150px;}
+.game-container table tr td{  border-bottom: 1px solid #ddd;  border-top: none;}
+.game-container img{width: 87%;margin: 10px 40px;}
+.game-container .actions .btn{margin: 0 20px;}
+.game-container .actions{margin-bottom: 40px;}
+.game-container .name{font-weight: bold;}
+.page-title h1{font-size: 40px;margin-top: 0px;}
+.page-title{font-size: 16px;}
+.page-title .score{
+	padding: 0 10%;	
+	width: 100%;
+	height: 40px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+.page-title .score .part{float: left;box-sizing:border-box;border: 1px solid black;height: 40px;text-align: center;  padding-top: 9px;font-size: 16px;  font-weight: bold;}
+.page-title .score .sorcesec{background: green;width: 20%;color: black;}
+.page-title .score .dragon{background: black;width: 30%;color: white}
+.page-title .score .astu{width: 50%;background: darkblue;color: #ddd}

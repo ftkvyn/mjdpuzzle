@@ -34,6 +34,16 @@ module.exports.routes = {
 
   '/rankings': 'ViewsController.rankings',  
 
+  '/points': 'ViewsController.points',  
+
+  '/challenges': 'ViewsController.challenges',  
+
+  '/game': 'ViewsController.game',  
+
+  '/books': 'ViewsController.books',  
+
+  '/about': 'ViewsController.about',  
+
   '/admin': 'ViewsController.admin',
 
   // Auth
@@ -41,6 +51,7 @@ module.exports.routes = {
 
   'post /auth/register': 'AuthController.register',
 
+  //ToDo: different links for log in and register.
   'get /auth/facebook/callback': 'AuthController.fb_authenticate_callback',
 
   'get /auth/facebook/:reg?/:team?/:captcha?': 'AuthController.fb_authenticate',

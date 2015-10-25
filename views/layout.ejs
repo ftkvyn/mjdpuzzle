@@ -27,13 +27,24 @@
     <% } %>
      '>
     <div class='contaner'>
-      <div class='jumbotron center'>
-        <h1>Balance of power goes here</h1>
+      <div class='jumbotron center page-title'>
+        <h1>Balance of power</h1>
+        <div class='score'>
+          <div class='part sorcesec'>SorceSec 20%</div>
+          <div class='part dragon'>Black Dragon 30%</div>
+          <div class='part astu'>ASTU 50%</div>
+        </div>
+        <div class='center'>
+          ASTU is winning now.
+        </div>
+        <div class='center'>
+          <a href="/register">Sign in</a> and <a href="/challenges">complete challenges</a> to help your team hold the Balance of Power!
+        </div>
       </div>
       <div class='row'>
         <div class='col-md-2'>
-          <div>Date here</div>
-          <div class="panel panel-primary" ng-hide='auth.loggedIn'>
+          <div><%= (new Date()).toDateString() %></div>
+          <div class="panel panel-primary ng-hide" ng-hide='auth.loggedIn'>
               <div class="panel-heading">
                   <h3 class="panel-title">Please, enter</h3>
               </div>
@@ -80,7 +91,7 @@
                   </form>
               </div>
           </div>
-          <div class="panel panel-primary" ng-show='auth.loggedIn'>
+          <div class="panel panel-primary ng-hide" ng-show='auth.loggedIn'>
               <div class="panel-heading">
                   <h3 class="panel-title">Hello, {{auth.currentUser.name}}</h3>
               </div>
@@ -99,10 +110,10 @@
                   </strong>
                   <ul>
                     <li>
-                      <a href="/">Rankings</a>
+                      <a href="/rankings">Rankings</a>
                     </li>
                     <li>
-                      <a href="/">Challenge Points</a>
+                      <a href="/points">Challenge Points</a>
                     </li>
                   </ul>
 
@@ -111,13 +122,13 @@
                   </strong>
                   <ul>
                     <li>
-                      <a href="/">Warm ups</a>
+                      <a href="/challenges">Warm ups</a>
                     </li>
                     <li>
-                      <a href="/">Patterns</a>
+                      <a href="/challenges">Patterns</a>
                     </li>
                     <li>
-                      <a href="/">Logical</a>
+                      <a href="/challenges">Logical</a>
                     </li>
                   </ul>
               </div>
@@ -131,7 +142,12 @@
           </div>
         </div>
         <div class='col-md-8'>
-          <div class="panel panel-default">
+          <div class='tabs'>
+            <a href="/"><div>Home</div></a>
+            <a href="/about"><div>About the Site</div></a>
+            <a href="/books"><div>Buy the books</div></a>
+          </div>
+          <div class="panel panel-default">              
               <div class="panel-body">
                   <%- body %>
               </div>
