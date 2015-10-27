@@ -18,7 +18,7 @@ module.exports = {
 		if(!req.session.message){
 			req.session.message = '';
 		}
-		req.session.correctCaptcha = 'mellon';
+		req.session.correctCaptcha = 'friend';
 		req.session.captcha = null;
 		req.session.team = null;
 		res.view('register', {

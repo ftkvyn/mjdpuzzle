@@ -167,6 +167,7 @@ module.exports = {
                   email: email,
                   password: hash,
                   name: req.body.name,
+                  team: req.body.team,
                   profilePicSmall:pic,
                   profilePicLarge:picLarge,
                 };
