@@ -69,6 +69,33 @@ app.controller('AuthController', ['$http', '$scope',
 			return true;
 		}
 
+		me.validateProfile = function(){
+			me.model.message = '';
+			var message = '';
+			if(!me.model.name){
+				message += 'Name is required.'
+			}
+			if(me.model.originalEmail){
+				var re = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)*$/i
+				if(!me.model.email || !re.test(me.model.email)){
+					message += ' Email is required.'
+				}
+			}
+			if(me.model.newPassword){
+				if(!me.model.newPassword || me.model.newPassword.length < 6){
+					message += ' Password should be at least 6 characters long.'
+				}
+				if(me.model.newPassword != me.model.newPasswordConfirm){
+					message += ' Password should mach confirmation.'
+				}			
+			}
+			me.model.message = message;
+			if(message){
+				return false;
+			}
+			return true;
+		}
+
 		me.register = function(data){
 			if(!me.validate(true)){
 				return;
@@ -97,6 +124,32 @@ app.controller('AuthController', ['$http', '$scope',
 				me.registering = false;
 				console.log(data);
 				console.log('Error occured while registering.');
+				alert(JSON.stringify(data));
+			});
+		}
+
+		me.saveProfile = function(){
+			if(!me.validateProfile(true)){
+				return;
+			}
+			if(me.registering){
+				return;
+			}
+			me.registering = true;
+			$http.post('/auth/update', me.model)
+			.success(function(data){	
+				me.registering = false;
+				if(!data.success){
+					me.model.message = data.message;
+					return;
+				}else{
+					location = '/profile/';
+				}
+			})
+			.error(function(data){
+				me.registering = false;
+				console.log(data);
+				console.log('Error occured while updating profile.');
 				alert(JSON.stringify(data));
 			});
 		}

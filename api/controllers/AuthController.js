@@ -186,6 +186,46 @@ module.exports = {
         });
       },
 
+  updateProfile: function(req, res){
+    var saveUser = function(user){
+      user.save(function (err, user) {
+        if (user) {          
+          req.session.user = user;  
+          return res.send({success:true});
+        } else {
+          console.log(err);
+          return res.send({success:false,message:'Error occured.'});
+        }
+      });
+    }
+
+    var model = req.body;
+    if(!req.session.user){
+      return res.send({success: false, message: 'You are not logged in.'});
+    }
+    if(req.session.user.id != model.id){
+      return res.send({success: false, message: 'You can\'t edit given profile.'});
+    }
+    User.findOne({id:model.id}).exec(
+      function(err,user){
+         user.name = model.name;
+         user.email = model.email;
+         user.location = model.location;
+         user.profilePicLarge = model.profilePicLarge;
+         user.signature = model.signature;
+         if(model.newPassword && (model.newPassword.length >= 6)){
+           bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(model.newPassword, salt, function(err, hash) {
+              user.password = hash;
+              saveUser(user);
+            })
+          });
+         }else{
+          saveUser(user);
+         }
+      });
+  },
+
 
   // recoverPassword: function(req, res){
   //   var email = req.body.email;

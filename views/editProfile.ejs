@@ -1,4 +1,4 @@
-<div>
+<div ng-init='auth.model=auth.currentUser'>
 	<h2>
 		Edit profile
 	</h2>
@@ -21,11 +21,28 @@
 	<div class='row'>
 		<div class='col-md-12'>
 			<fieldset class='margin-top'>
+				<div class='error' ng-hide='auth.model.message'>
+			    	{{auth.model.message}}
+			    </div>
+				<input type='hidden' value='' ng-model='auth.model.id' />
+				<input type='hidden' value='' ng-model='auth.model.originalEmail' />
+		        <div class="form-group row">
+		            <label class="col-md-3 control-label ch-label" for='name'>
+		            	Name</label>
+		            <div class="col-md-9">
+		                <input type='text' 
+		                ng-model='auth.model.name'
+		                id='name' class='form-control'/>
+		            </div>
+		        </div>
+		        <%if(!user.fb_id){%>
 		        <div class="form-group row">
 		            <label class="col-md-3 control-label ch-label" for='new-pass'>
 		            	New password</label>
 		            <div class="col-md-9">
-		                <input type='password' id='new-pass' class='form-control'/>
+		                <input type='password' 
+		                ng-model='auth.model.newPassword'
+		                id='new-pass' class='form-control'/>
 		            </div>
 		        </div>
 
@@ -33,7 +50,9 @@
 		            <label class="col-md-3 control-label ch-label" for='conf-pass'>
 		            	Confirm password</label>
 		            <div class="col-md-9">
-		                <input type='password' id='conf-pass' class='form-control'/>
+		                <input type='password' 
+		                ng-model='auth.model.newPasswordConfirm'
+		                id='conf-pass' class='form-control'/>
 		            </div>
 		        </div>
 
@@ -42,18 +61,22 @@
 		            	Email*
 		            </label>
 		            <div class="col-md-9">
-		                <input type='text' id='email' class='form-control' 
-		                value='<%- user.email %>'/>
+		                <input type='text' id='email' 
+		                ng-model='auth.model.email'
+		                class='form-control' 
+		                value=''/>
 		            </div>
 		        </div>
-
+		        <%}%>
 		        <div class="form-group row">
 		            <label class="col-md-3 control-label ch-label" for='location'>
 		            	Location
 		            </label>
 		            <div class="col-md-9">
-		                <input type='text' id='location' class='form-control' 
-		                value='<%- user.location || "" %>'/>
+		                <input type='text' id='location' 
+		                ng-model='auth.model.location'
+		                class='form-control' 
+		                value=''/>
 		            </div>
 		        </div>
 
@@ -62,8 +85,10 @@
 		            	Avatar
 		            </label>
 		            <div class="col-md-9">
-		                <input type='text' id='pic' class='form-control' 
-		                value='<%- user.profilePicLarge %>'/>
+		                <input type='text' id='pic' 
+		                ng-model='auth.model.profilePicLarge'
+		                class='form-control' 
+		                value=''/>
 		            </div>
 		        </div>
 
@@ -72,16 +97,20 @@
 		            	Signature
 		            </label>
 		            <div class="col-md-9">
-		                <textarea id='sign' class='form-control'></textarea>
+		                <textarea style='resize:none;' 
+		                ng-model='auth.model.signature'
+		                id='sign' class='form-control'></textarea>
 		            </div>
 		        </div>
 
 		        <div class="form-group row">
 		            <div class="col-md-6 center">
-		            	<button class='btn btn-primary'>Save</button>
+		            	<button
+		            	ng-click='auth.saveProfile()'
+		            	class='btn btn-primary'>Save</button>
 		            </div>
 		            <div class="col-md-6 center">
-		                <button class='btn btn-danger'>Cancel</button>
+		                <a class='btn btn-danger' href='/profile/'>Cancel</a>
 		            </div>
 		        </div>
 		        

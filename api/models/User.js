@@ -34,7 +34,12 @@ module.exports = {
 	lastVisit:{
 		type:'datetime'
 	},
-
+	signature:{
+		type: 'string'
+	},
+	location:{
+		type: 'string'
+	},
 	isAdmin:{
 		type:'boolean'
 	},
