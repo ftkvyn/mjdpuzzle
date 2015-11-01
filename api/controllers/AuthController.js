@@ -43,7 +43,9 @@ module.exports = {
             req.session.user = user;
             if(!user.team)
             {
-              User.update({id: user.id}, {team: req.session.team || "sorcesec"})
+              var teams = ['astu', 'blackdragon', 'sorcesec'];
+              var num = Math.floor(Math.random() * team.length);
+              User.update({id: user.id}, {team: req.session.team || teams[num]})
               .exec(function(err, result){
                   req.session.team = null;
                   req.session.user = result[0];
