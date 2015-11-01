@@ -32,7 +32,8 @@
     "bcrypt":"0.8.0",
     "q" : "*",
     "node-uuid":"1.4.1",
-    "gravatar":"*"
+    "gravatar":"*",
+    "nodemailer":"0.7.1"
   },
   "scripts": {
     "start": "node app.js",

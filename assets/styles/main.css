@@ -72,7 +72,7 @@ img.background{
 	color: red;
 	font-size: 24px;
 }
-.profile-pic{margin: auto;height: 200px;max-width: 200px;}
+.profile-pic{margin: auto;max-height: 200px;max-width: 200px;}
 .ch-label{text-align: right;}
 .ch-tag{float: left;
   font-size: 20px;
@@ -111,3 +111,4 @@ img.background{
 .page-title .score .sorcesec{background: green;width: 20%;color: black;}
 .page-title .score .dragon{background: black;width: 30%;color: white}
 .page-title .score .astu{width: 50%;background: darkblue;color: #ddd}
+.ng-hide{display: none;}

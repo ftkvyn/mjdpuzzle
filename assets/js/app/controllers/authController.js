@@ -39,6 +39,7 @@ app.controller('AuthController', ['$http', '$scope',
 			if(!me.model.team){
 				message += ' You should select your team.'	
 			}
+
 			if(!me.model.captcha){
 				message += 'Code is required.'
 			}
@@ -150,6 +151,32 @@ app.controller('AuthController', ['$http', '$scope',
 				me.registering = false;
 				console.log(data);
 				console.log('Error occured while updating profile.');
+				alert(JSON.stringify(data));
+			});
+		}
+
+		me.recoverPassword = function(){
+			if(!me.model.email){
+				return;
+			}
+			if(me.registering){
+				return;
+			}
+			me.registering = true;
+			$http.post('/auth/recoverPassword', me.model)
+			.success(function(data){	
+				me.registering = false;
+				if(!data.success){
+					me.model.message = data.message;
+					return;
+				}else{
+					me.newPasswordSent = true;
+				}
+			})
+			.error(function(data){
+				me.registering = false;
+				console.log(data);
+				console.log('Error occured.');
 				alert(JSON.stringify(data));
 			});
 		}

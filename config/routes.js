@@ -53,6 +53,8 @@ module.exports.routes = {
 
   'post /auth/update': 'AuthController.updateProfile',
 
+  'post /auth/recoverPassword': 'AuthController.recoverPassword',
+
   //ToDo: different links for log in and register.
   'get /auth/facebook/callback': 'AuthController.fb_authenticate_callback',
 

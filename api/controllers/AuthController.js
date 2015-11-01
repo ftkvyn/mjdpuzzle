@@ -227,33 +227,83 @@ module.exports = {
   },
 
 
-  // recoverPassword: function(req, res){
-  //   var email = req.body.email;
-  //   User.findOne({email: email}).exec(function(err, user){
-  //     if(err){
-  //       console.log(err);
-  //       return res.send({message: 'Unable process request.'});
-  //     }
-  //     if(!user)
-  //     {
-  //       return res.send({message: 'User with given email not found.'});
-  //     }
-  //     if(!user.password && user.fb_id){
-  //       return res.send({message: 'User with given email was registered using facebok. Try to login with facebook.'}); 
-  //     }
-  //     user.recoveryKey = uuid.v4();
-  //     user.save(function(err,user){
-  //         if(err){
-  //           console.log(err);
-  //           return res.send({message: 'Unable process request.'});
-  //         }
-  //         emailService.resetPassword(user);   
-  //         return res.send({message: 'Instructions on reset password were sent to ' + user.email});
-  //       }
-  //     );
+  recoverPassword: function(req, res){
+    var generatePass = function(length)
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  //   })
-  // },
+        for( var i=0; i < length; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    var newPassword = generatePass(8);
+    var sendMail = function(user){
+      var mailer = require("nodemailer");
+
+      // Use Smtp Protocol to send Email
+      var smtpTransport = mailer.createTransport("SMTP",{
+          service: "Mail.ru",
+          auth: {
+              user: "mjdpuzzle@list.ru",
+              pass: "1qazxsw2"
+          }
+      });
+
+      var mail = {
+          from: "Balance of powers <mjdpuzzle@list.ru>",
+          to: user.email,
+          subject: "New password for Balance of Power",
+          html: "Your new password is: <b>" + newPassword + "</b><br/>" +
+          "Please, change the password as soon as possible.<br/><br/>" + 
+          "Best regards,<br/>MJD.",
+      }
+
+      smtpTransport.sendMail(mail, function(error, response){
+          smtpTransport.close();
+          if(error){
+              console.log(error);
+              return res.send({success:false,message:'Error occured.'});
+          }else{
+              return res.send({success:true});
+          }
+      });   
+    }
+
+    var saveUser = function(user){
+      user.save(function (err, user) {
+        if (user) {          
+          return sendMail(user);
+        } else {
+          console.log(err);
+          return res.send({success:false,message:'Error occured.'});
+        }
+      });
+    }
+
+    var email = req.body.email;
+    User.findOne({email: email}).exec(function(err, user){
+      if(err){
+        console.log(err);
+        return res.send({message: 'Unable process request.'});
+      }
+      if(!user)
+      {
+        return res.send({message: 'User with given email not found.'});
+      }
+      if(user.fb_id){
+        return res.send({message: 'User with given email was registered using facebok. Try to login with facebook.'}); 
+      }
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(newPassword, salt, function(err, hash) {
+          user.password = hash;
+          saveUser(user);
+        })
+      });
+    })
+  },
 
   // resetPassword: function(req,res){
   //     var password = req.body.password;

@@ -7,9 +7,9 @@
 
 module.exports = {
 	home: function(req,res){
-		res.view('home', {
+		return res.view('home', {
 			locals:{currentUser : req.session.user}
-		});		
+		});
 	},
 
 	register: function(req,res){
@@ -42,7 +42,7 @@ module.exports = {
 			res.view('profile', {
 				locals:{currentUser : req.session.user, user: user, message: req.session.message}
 			});	
-		})
+		});		
 	},
 
 	editProfile: function(req, res){
