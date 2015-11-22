@@ -35,8 +35,32 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
   ViewsController:{
-    '*':'lastOnline'
+    '*':'lastOnline',
+    'admin':'isAdmin'
   },
+
+  CategoryController:{
+    find: true,
+    create: 'isAdmin',
+    destroy: 'isAdmin',
+    update: 'isAdmin'
+  },
+
+  GameController:{
+    find: true,
+    create: 'isAdmin',
+    destroy: 'isAdmin',
+    update: 'isAdmin'
+  },
+
+
+  GameResultController:{
+    find: true,
+    create: 'sessionAuth',
+    destroy: 'isAdmin',
+    update: 'isAdmin'
+  },
+
 
 	// RabbitController: {
 

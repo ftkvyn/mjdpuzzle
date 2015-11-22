@@ -1,0 +1,70 @@
+<div ng-controller='AdminController as admin'
+ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
+	<h1>Categories:</h1>
+	<p ng-show='admin.loading'>Loading</p>
+	<ul class='list'>
+		<li>
+			<span>New category:</span> 
+			<input class='form-control' type='text' ng-model='admin.model.name' placeholder='Name'/> 
+			<button class='btn btn-primary' ng-click='admin.addCategory()'>Add</button>
+		</li>
+		<li class='category' ng-repeat='cat in admin.categories'>
+			<h3 ng-click='admin.toggleCategory(cat)'>
+				<i class="mdi-hardware-keyboard-arrow-down" 
+				ng-show='cat.isExpanded'></i>
+				<i class="mdi-hardware-keyboard-arrow-right"
+				ng-hide='cat.isExpanded'></i>
+				{{cat.name}}
+			</h3>
+			<ul ng-show='cat.isExpanded'>
+				<li ng-repeat='game in cat.games'>
+					<strong>{{game.name}}</strong> - {{game.difficulty}}, {{game.points}} points.
+				</li>
+				<li>
+					<span>New Game:</span> 
+					<table class='table'>
+						<thead>	
+							<tr>
+								<th>Name</th>								
+								<th>Difficulty</th>
+								<th>Points</th>
+								<th>Assets</th>
+							</tr>
+						</thead>	
+						<tbody>
+							<tr>
+								<td>
+									<input class='form-control' type='text' 
+									ng-model='cat.gameModel.name' placeholder='Name'/> 
+								</td>
+								<td>
+									<select class='form-control' 
+									ng-change='admin.difficultyChanged(cat)'
+									ng-model='cat.gameModel.difficulty'/> 
+										<option value='Easy'>Easy</option>
+										<option value='Medium'>Medium</option>
+										<option value='Difficult'>Difficult</option>
+										<option value='Hard'>Hard</option>
+									</select>
+								</td>
+								<td>
+									<input class='form-control' type='number'
+									ng-model='cat.gameModel.points' placeholder='Points'/> 
+								</td>
+								<td>
+									<input class='form-control' type='text' 
+									ng-model='cat.gameModel.viewPage' placeholder='Page'/> 
+									<input class='form-control' type='text' 
+									ng-model='cat.gameModel.viewScript' placeholder='Script'/> 
+									<input class='form-control' type='text' 
+									ng-model='cat.gameModel.viewStyle' placeholder='Style'/> 
+								</td>								
+							</tr>
+						</tbody>
+					</table>					
+					<button class='btn btn-primary' ng-click='admin.addGame(cat, $index)'>Add</button>
+				</li>				
+			</ul>
+		</li>
+	</ul>
+</div>

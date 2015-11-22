@@ -23,6 +23,7 @@ module.exports.models = {
   // migrate:'drop',
   migrate: 'alter',
 
+
   /***************************************************************************
   *                                                                          *
   * How and whether Sails will attempt to automatically rebuild the          *

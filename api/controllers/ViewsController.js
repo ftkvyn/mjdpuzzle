@@ -65,8 +65,10 @@ module.exports = {
 	},
 
 	admin: function(req,res){
-		res.locals.layout = null;
-		res.view('admin');		
+		res.locals.layout = 'adminLayout.ejs';
+		res.view('admin/main',{
+			locals:{currentUser : req.session.user}
+		});		
 	},
 
 	recoverPassword: function(req,res){

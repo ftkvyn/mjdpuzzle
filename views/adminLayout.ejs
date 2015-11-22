@@ -12,6 +12,7 @@
     <link href="/css/roboto.min.css" rel="stylesheet">
     <link href="/css/material.min.css" rel="stylesheet">
     <link href="/css/ripples.min.css" rel="stylesheet">
+    <link href="/css/admin.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
     
@@ -20,7 +21,12 @@
   <body ng-app='puzzle'
     ng-show='true'
     class='ng-hide'
-   ng-controller='AuthController as auth'>
+   ng-controller='AuthController as auth'
+   ng-init='
+    <% if(currentUser) { %>
+      auth.loggedIn=true;auth.currentUser=<%-JSON.stringify(currentUser)%>; 
+    <% } %>
+     '>
     <div class='contaner'>
       <div class='jumbotron center'>
         <h1>Admin module</h1>
@@ -30,7 +36,7 @@
         <div class='col-md-8'>
           <div class="panel panel-default">
               <div class="panel-body">
-                  Content
+                  <%- body %>
               </div>
           </div>          
         </div>
@@ -54,5 +60,6 @@
     <script type="text/javascript" src='/js/lib/angular.min.js'></script>
     <script type="text/javascript" src='/js/app/app.js'></script>
     <script type="text/javascript" src='/js/app/controllers/authController.js'></script>
+    <script type="text/javascript" src='/js/app/controllers/adminController.js'></script>
   </body>
 </html>
