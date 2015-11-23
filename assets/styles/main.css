@@ -5,8 +5,11 @@ body{
   	margin: auto;
   	padding-top: 10px;
 }
+.alt-back{
+	background: url(/images/background_2.jpg);
+}
 .tabs{width: 100%; text-align: right;  margin-bottom: 4px;}
-.tabs div{padding: 5px;margin: 5px -1px 0 -3px; background: white;border: 1px solid #ddd;display: inline;}
+.tabs div{padding: 5px;margin: 5px -1px 0 -3px; color: rgb(85, 68, 35);border: 1px solid #ddd;display: inline;}
 .clear{
 	float: none;
 	clear: both;

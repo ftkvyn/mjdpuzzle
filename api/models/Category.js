@@ -14,14 +14,31 @@ module.exports = {
 	    required: true
 	},
 
+	friendlyId:{
+	    type: 'string',
+	    unique: true,
+	},
+
 	order: {
 		type: 'integer'
+	},
+
+	defaultImgUrl:{
+		type: 'string'
 	},
 
 	games:{
 		collection: 'Game',
 		via: 'category'
 	}
-  }
+  },
+
+  beforeCreate: function (values, cb) {    	
+	friendlyIdService.findFriendlyId(Category, values.name,
+		function(friendlyId){
+			values.friendlyId = friendlyId;
+			cb();
+		});
+  },
 };
 

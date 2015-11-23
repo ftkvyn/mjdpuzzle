@@ -36,9 +36,9 @@ module.exports.routes = {
 
   '/points': 'ViewsController.points',  
 
-  '/challenges': 'ViewsController.challenges',  
+  '/challenges/:friendlyId': 'ViewsController.challenges',  
 
-  '/game': 'ViewsController.game',  
+  '/game/:id': 'ViewsController.game',  
 
   '/books': 'ViewsController.books',  
 

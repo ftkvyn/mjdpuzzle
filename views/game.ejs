@@ -1,22 +1,22 @@
 <div class='game-container'>
-	<h1>Challenges - Warm Ups</h1>
+	<h1>Challenges - <%= game.category.name%></h1>
 	<table class='table center'>
 		<tr>
 			<td>
 				<div class='name'>Challenge No:</div>
-				<div>001</div>
+				<div><%= (game.order || 0 + 1)%></div>
 			</td>
 			<td>
 				<div class='name'>Name:</div>
-				<div>Introduction</div>
+				<div><%= game.name %></div>
 			</td>
 			<td>
 				<div class='name'>Points:</div>
-				<div>2</div>
+				<div><%= game.points %></div>
 			</td>
 			<td>
 				<div class='name'>Made by:</div>
-				<div>Ryzo224</div>
+				<div><%= game.author.name %></div>
 			</td>
 		</tr>
 	</table>

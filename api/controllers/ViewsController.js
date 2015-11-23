@@ -90,8 +90,13 @@ module.exports = {
 	},
 
 	challenges: function(req,res){
-		res.view('challenges', {
-			locals:{currentUser : req.session.user}
+		var friendlyId = req.params.friendlyId;
+		Category.findOne({friendlyId : friendlyId})
+		.populate('games')
+		.exec(function(err, category){
+			res.view('challenges', {
+				locals:{currentUser : req.session.user, challenge: category}
+			});		
 		});		
 	},
 
@@ -108,9 +113,16 @@ module.exports = {
 	},
 
 	game: function(req,res){
-		res.view('game', {
-			locals:{currentUser : req.session.user}
-		});		
+		var id = req.params.id;
+		Game.findOne(id)
+		.populate('category')
+		.populate('author')
+		.exec(function(err, game){
+			res.view('game', {
+				locals:{currentUser : req.session.user, game : game}
+			});		
+		});
+		
 	},
 };
 

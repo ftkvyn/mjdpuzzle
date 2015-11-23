@@ -1,16 +1,22 @@
 <div>
-	<h1>Challenges - Warm Ups</h1>
+	<h1>Challenges - <%= challenge.name %></h1>
 	<ul class='challenges'>
+		<% for(var i = 0; i < challenge.games.length ; i++) {%>
 		<li>
 			<div class='container'>
-				<img src="http://mathworld.wolfram.com/images/eps-gif/SquareDiagonals_700.gif" />
+				<a href="/game/<%= challenge.games[i].id %>">
+					<img 
+					src="<%= challenge.games[i].imgUrl || 'http://mathworld.wolfram.com/images/eps-gif/SquareDiagonals_700.gif' %>" />
+				</a>
 				<table class='table info'>
 					<tr>
 						<td class='name'>
 							Title: 
 						</td>
 						<td>
-							<a href="/game">Introduction</a>
+							<a href="/game/<%= challenge.games[i].id %>">
+								<%= challenge.games[i].name%>
+							</a>
 						</td>
 					</tr>
 					<tr>
@@ -18,7 +24,7 @@
 							Points: 
 						</td>
 						<td>
-							2 points
+							<%= challenge.games[i].points %> points
 						</td>
 					</tr>
 					<tr>
@@ -26,14 +32,14 @@
 							Difficulty: 
 						</td>
 						<td>
-							Easy
+							<%= challenge.games[i].difficulty %>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</li>
-
-		<li>
+		<%}%>
+		<!-- <li>
 			<div class='container'>
 				<img src="http://mathworld.wolfram.com/images/eps-gif/SquareDiagonals_700.gif" />
 				<table class='table info'>
@@ -129,6 +135,6 @@
 				</tr>
 			</table>
 			</div>
-		</li>
+		</li> -->
 	</ul>
 </div>

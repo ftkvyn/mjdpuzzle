@@ -26,8 +26,9 @@
       auth.loggedIn=true;auth.currentUser=<%-JSON.stringify(currentUser)%>; 
     <% } %>
      '>
-    <div class='contaner'>
-      <div class='jumbotron center page-title'>
+    <div class='contaner' ng-controller='GamesController as games'
+    ng-init='games.loadCategories()'>
+      <div class='jumbotron center page-title alt-back'>
         <h1>Balance of power</h1>
         <div class='score'>
           <div class='part sorcesec'>SorceSec 20%</div>
@@ -121,14 +122,8 @@
                     The Challenges
                   </strong>
                   <ul>
-                    <li>
-                      <a href="/challenges">Warm ups</a>
-                    </li>
-                    <li>
-                      <a href="/challenges">Patterns</a>
-                    </li>
-                    <li>
-                      <a href="/challenges">Logical</a>
+                    <li ng-repeat='cat in games.categories'>
+                      <a ng-href="/challenges/{{cat.friendlyId}}">{{cat.name}}</a>
                     </li>
                   </ul>
               </div>
@@ -143,9 +138,9 @@
         </div>
         <div class='col-md-8'>
           <div class='tabs'>
-            <a href="/"><div>Home</div></a>
-            <a href="/about"><div>About the Site</div></a>
-            <a href="/books"><div>Buy the books</div></a>
+            <a href="/"><div class='alt-back'>Home</div></a>
+            <a href="/about"><div class='alt-back'>About the Site</div></a>
+            <a href="/books"><div class='alt-back'>Buy the books</div></a>
           </div>
           <div class="panel panel-default">              
               <div class="panel-body">
@@ -188,7 +183,7 @@
         </div>
       </div>      
       <div class='row'>
-        <div class="panel panel-default margin-top">
+        <div class="panel panel-default margin-top alt-back">
               <div class="panel-body center">
                   <h2>Footer</h2>
               </div>              
@@ -211,5 +206,6 @@
     <script type="text/javascript" src='/js/lib/angular.min.js'></script>
     <script type="text/javascript" src='/js/app/app.js'></script>
     <script type="text/javascript" src='/js/app/controllers/authController.js'></script>
+    <script type="text/javascript" src='/js/app/controllers/gamesController.js'></script>
   </body>
 </html>

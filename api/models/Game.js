@@ -18,6 +18,14 @@ module.exports = {
 		required: true
 	},
 
+	imgUrl:{
+		type: 'string'
+	},
+
+	order: {
+		type: 'integer'
+	},
+
 	author:{
 		model: 'User',
 		required: true
