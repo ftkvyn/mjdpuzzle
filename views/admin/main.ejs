@@ -19,6 +19,9 @@ ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
 			<ul ng-show='cat.isExpanded'>
 				<li ng-repeat='game in cat.games'>
 					<strong>{{game.name}}</strong> - {{game.difficulty}}, {{game.points}} points.
+					<button class='btn btn-danger btn-small'
+					ng-click='admin.deleteGame(game)'>
+						Delete</button>
 				</li>
 				<li>
 					<span>New Game:</span> 

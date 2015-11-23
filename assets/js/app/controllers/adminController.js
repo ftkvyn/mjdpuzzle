@@ -88,5 +88,17 @@ app.controller('AdminController', ['$http', '$scope',
 				alert('Error adding game.');
 			});	
 		}
+
+		me.deleteGame = function(game, index){
+			$http.delete('/api/game/' + game.id)
+			.success(function(data){
+				me.loadCategories();
+			})
+			.error(function(data){
+				me.loading = false;
+				console.log(data);
+				alert('Error adding game.');
+			});		
+		}
 	}]
 );

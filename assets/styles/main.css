@@ -97,10 +97,10 @@ img.background{
 .challenges li .info tr td{border: none;}
 .challenges li .info .name{font-weight: bold;width: 150px;}
 .game-container table tr td{  border-bottom: 1px solid #ddd;  border-top: none;}
-.game-container img{width: 87%;margin: 10px 40px;}
 .game-container .actions .btn{margin: 0 20px;}
 .game-container .actions{margin-bottom: 40px;}
 .game-container .name{font-weight: bold;}
+.game-container .game-body{width: 700px; min-height: 350px; border: 1px solid #bebebe; border-radius: 4px;margin: 10px auto 40px auto;}
 .page-title h1{font-size: 40px;margin-top: 0px;}
 .page-title{font-size: 16px;}
 .page-title .score{
