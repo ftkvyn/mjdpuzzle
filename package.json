@@ -1,7 +1,7 @@
 {
   "name": "mjdpuzzle",
   "engines": {
-    "node": ">=0.10.40",
+    "node": "0.10.40",
     "npm": "1.4.21"
   },
   "private": true,
