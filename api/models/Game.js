@@ -43,14 +43,6 @@ module.exports = {
 	viewPage: {
 		type: 'string',
 	},
-
-	viewScript: {
-		type: 'string',
-	},
-
-	viewStyle: {
-		type: 'string',
-	},
   }
 };
 

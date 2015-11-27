@@ -4,6 +4,8 @@
  * @description :: Server-side logic for managing Views
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+var ejs = require('ejs');
+var fs = require('fs');
 
 module.exports = {
 	home: function(req,res){
@@ -118,9 +120,24 @@ module.exports = {
 		.populate('category')
 		.populate('author')
 		.exec(function(err, game){
-			res.view('game', {
-				locals:{currentUser : req.session.user, game : game}
-			});		
+			var data = {currentUser : req.session.user, game : game};
+			fs.readFile(sails.config.appPath + '/views/layout.ejs', 'utf8', function (err, layout) {
+				var index = layout.indexOf('<%- body %>');				
+				var header = layout.substring(0, index);
+				var footer = layout.substring(index).replace('<%- body %>', '');
+				var fileName = sails.config.appPath + '/views/game.ejs';
+				fs.readFile(fileName, 'utf8', function (err, template) {
+					template = header + template + footer;
+					var html = ejs.render(template, data, {
+						filename: fileName
+					});	
+					res.send(html);
+				});
+			});
+			
+			// res.view('game', {
+			// 	locals:{currentUser : req.session.user, game : game}
+			// });				
 		});
 		
 	},
