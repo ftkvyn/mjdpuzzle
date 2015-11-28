@@ -94,6 +94,7 @@ module.exports = {
 	challenges: function(req,res){
 		var friendlyId = req.params.friendlyId;
 		Category.findOne({friendlyId : friendlyId})
+		.sort('order')
 		.populate('games')
 		.exec(function(err, category){
 			res.view('challenges', {

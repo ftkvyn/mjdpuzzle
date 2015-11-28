@@ -115,3 +115,4 @@ img.background{
 .page-title .score .dragon{background: black;width: 30%;color: white}
 .page-title .score .astu{width: 50%;background: darkblue;color: #ddd}
 .ng-hide{display: none;}
+.btn.btn-small{padding: 0px 10px;}

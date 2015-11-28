@@ -123,7 +123,7 @@
                     The Challenges
                   </strong>
                   <ul>
-                    <li ng-repeat='cat in games.categories'>
+                    <li ng-repeat='cat in games.categories | orderBy: "order"'>
                       <a ng-href="/challenges/{{cat.friendlyId}}">{{cat.name}}</a>
                     </li>
                   </ul>

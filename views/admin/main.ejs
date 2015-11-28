@@ -8,20 +8,45 @@ ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
 			<input class='form-control' type='text' ng-model='admin.model.name' placeholder='Name'/> 
 			<button class='btn btn-primary' ng-click='admin.addCategory()'>Add</button>
 		</li>
-		<li class='category' ng-repeat='cat in admin.categories'>
+		<li class='category' ng-repeat='cat in admin.categories | orderBy: "order"'>
 			<h3 ng-click='admin.toggleCategory(cat)'>
 				<i class="mdi-hardware-keyboard-arrow-down" 
 				ng-show='cat.isExpanded'></i>
 				<i class="mdi-hardware-keyboard-arrow-right"
 				ng-hide='cat.isExpanded'></i>
-				{{cat.name}}
+				{{cat.name}} {{cat.order}}
+				<button class='btn btn-small btn-info' ng-click='admin.move(admin.categories, $index, true, false, $event)'
+					ng-hide='$last'>
+					<i class="mdi-hardware-keyboard-arrow-down" 
+					></i>
+				</button>
+				<button class='btn btn-small btn-info' ng-click='admin.move(admin.categories, $index, true, true, $event)'
+					ng-hide='$first'>
+					<i class="mdi-hardware-keyboard-arrow-up" 
+					></i>
+				</button>
 			</h3>
 			<ul ng-show='cat.isExpanded'>
-				<li ng-repeat='game in cat.games'>
-					<strong>{{game.name}}</strong> - {{game.difficulty}}, {{game.points}} points.
+				<li ng-repeat='game in cat.games | orderBy: "order"'>
+					<strong>{{game.name}} {{game.order}}</strong> - {{game.difficulty}}, {{game.points}} points.
+					<button class='btn btn-small btn-info' ng-click='admin.move(cat.games, $index, false, false, $event)'
+						ng-hide='$last'>
+						<i class="mdi-hardware-keyboard-arrow-down" 
+						></i>
+					</button>
+					<button class='btn btn-small btn-info' ng-click='admin.move(cat.games, $index, false, true, $event)'
+						ng-hide='$first'>
+						<i class="mdi-hardware-keyboard-arrow-up" 
+						></i>
+					</button>
+					<button class='btn btn-warning btn-small'
+					ng-click='admin.editGame(cat, game)'>
+						Edit
+					</button>
 					<button class='btn btn-danger btn-small'
 					ng-click='admin.deleteGame(game)'>
-						Delete</button>
+						Delete
+					</button>					
 				</li>
 				<li>
 					<span>New Game:</span> 
@@ -61,7 +86,9 @@ ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
 							</tr>
 						</tbody>
 					</table>					
-					<button class='btn btn-primary' ng-click='admin.addGame(cat, $index)'>Add</button>
+					<button class='btn btn-primary' ng-click='admin.addGame(cat, $index)'>Save</button>
+					<button class='btn btn-warning' ng-click='admin.cancelEditGame(cat)'
+					ng-show='cat.gameModel.id'>Cancel</button>
 				</li>				
 			</ul>
 		</li>
