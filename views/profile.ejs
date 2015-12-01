@@ -84,36 +84,24 @@
 		        	Challenges
 		        </legend>
 		    </fieldset>
+		    <% for(var i = 0; i < categories.length ; i++) {%>
 		    <div class="form-group row">
-	            <label class="col-md-3 control-label ch-label">Warm Ups</label>
+		    	<a href="/challenges/<%= categories[i].friendlyId %>">
+	            	<label class="col-md-3 control-label ch-label"><%= categories[i].name %></label>
+	            </a>
 	            <div class="col-md-9">
-	                <div class='ch-tag complete'>1</div>
-	                <div class='ch-tag complete'>2</div>
-	                <div class='ch-tag complete'>3</div>
-	                <div class='ch-tag'>4</div>
-	                <div class='ch-tag'>5</div>
+	            	<% for(var k = 0; k < categories[i].games.length ; k++) {%>
+	            	<a href="/game/<%= categories[i].games[k].id %>">
+	                	<div class='ch-tag
+	                	<% if(categories[i].games[k].isComplete){ %>
+	                		<%= 'complete' %>
+	                	<% } %>
+	                	'><%= (k + 1) %></div>
+	                </a>
+	                <% } %>
 	            </div>
 	        </div>
-	        <div class="form-group  row">
-	            <label class="col-md-3 control-label ch-label">Word Games</label>
-	            <div class="col-md-9">
-	                <div class='ch-tag complete'>1</div>
-	                <div class='ch-tag'>2</div>
-	                <div class='ch-tag complete'>3</div>
-	                <div class='ch-tag'>4</div>
-	                <div class='ch-tag'>5</div>
-	                <div class='ch-tag complete'>6</div>
-	            </div>
-	        </div>
-	        <div class="form-group row">
-	            <label class="col-md-3 control-label ch-label">Number Games</label>
-	            <div class="col-md-9">
-	                <div class='ch-tag'>1</div>
-	                <div class='ch-tag complete'>2</div>
-	                <div class='ch-tag complete'>3</div>
-	                <div class='ch-tag'>4</div>
-	            </div>
-	        </div>
+	        <% } %>	        
 	    </div>
 	</div>
 </div>

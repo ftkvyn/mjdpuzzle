@@ -41,9 +41,20 @@ module.exports = {
 				console.log(err);
 				return res.redirect('/notFound');
 			}
-			res.view('profile', {
-				locals:{currentUser : req.session.user, user: user, message: req.session.message}
-			});	
+			Category.find()
+			.sort('order')
+			.populate('games')
+			.exec(function(err, categories){
+				res.view('profile', {
+					locals:{
+						currentUser : req.session.user, 
+						user: user, 
+						message: req.session.message,
+						categories: categories
+					}
+				});	
+			});		
+			
 		});		
 	},
 

@@ -76,7 +76,7 @@ img.background{
 	font-size: 24px;
 }
 .profile-pic{margin: auto;max-height: 200px;max-width: 200px;}
-.ch-label{text-align: right;}
+.ch-label{text-align: right;cursor: pointer;}
 .ch-tag{float: left;
   font-size: 20px;
   border: 2px solid black;
@@ -85,6 +85,7 @@ img.background{
   margin: 3px;
   padding: 0px 3px 3px 3px;
   line-height: 20px;
+  color:black;
 }
 .ch-tag.complete{background: green;color: white;font-weight: bold;}
 .point-container{padding: 0 60px;margin-top: 20px;}
