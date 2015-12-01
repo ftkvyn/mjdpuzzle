@@ -14,7 +14,7 @@ ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
 				ng-show='cat.isExpanded'></i>
 				<i class="mdi-hardware-keyboard-arrow-right"
 				ng-hide='cat.isExpanded'></i>
-				{{cat.name}} {{cat.order}}
+				{{cat.name}}
 				<button class='btn btn-small btn-info' ng-click='admin.move(admin.categories, $index, true, false, $event)'
 					ng-hide='$last'>
 					<i class="mdi-hardware-keyboard-arrow-down" 
@@ -28,7 +28,7 @@ ng-init='admin.user=auth.currentUser;admin.loadCategories();'>
 			</h3>
 			<ul ng-show='cat.isExpanded'>
 				<li ng-repeat='game in cat.games | orderBy: "order"'>
-					<strong>{{game.name}} {{game.order}}</strong> - {{game.difficulty}}, {{game.points}} points.
+					<strong>{{game.name}}</strong> - {{game.difficulty}}, {{game.points}} points.
 					<button class='btn btn-small btn-info' ng-click='admin.move(cat.games, $index, false, false, $event)'
 						ng-hide='$last'>
 						<i class="mdi-hardware-keyboard-arrow-down" 
