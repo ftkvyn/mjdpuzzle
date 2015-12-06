@@ -36,7 +36,7 @@ module.exports = function sendOK (data, options) {
   // Otherwise try to guess an appropriate view, or if that doesn't
   // work, just send JSON.
   if (options.view) {
-    return res.view(options.view, { data: data , currentUser : req.session.user });
+    return res.view(options.view, { data: data , currentUser : req.session.user , teams: {}});
   }
 
   // If no second argument provided, try to serve the implied view,

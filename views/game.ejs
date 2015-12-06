@@ -41,7 +41,10 @@
 			<div class='panel-footer'>
 				<button class='btn btn-success' ng-click='games.nextGame()'>
 					Next game
-				</button>				
+				</button>	
+				<button class='btn btn-warning' ng-click='games.modalSuccess = false'>
+					Close
+				</button>			
 			</div>
 		</div>
 	</div>
@@ -56,6 +59,9 @@
 			<div class='panel-footer'>
 				<button class='btn btn-primary' ng-click='games.reload()'>
 					Try again
+				</button>	
+				<button class='btn btn-warning' ng-click='games.modalFail = false'>
+					Close
 				</button>				
 			</div>
 		</div>

@@ -60,7 +60,10 @@
           <% } %>
           <% if(teams.best == 'sorcesec'){%>
             SourceSec
-          <% } %> is winning now.
+          <% } %> 
+          <% if(teams.best){%>
+          is winning now.
+          <% } %> 
         </div>
         <% if(!currentUser){ %>
         <div class='center'>
