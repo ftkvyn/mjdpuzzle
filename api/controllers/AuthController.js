@@ -13,6 +13,7 @@ module.exports = {
   
   logout: function (req, res){
     req.session.user = null;
+    res.locals.currentUser = null;
     res.redirect('/');
   },
 
@@ -22,14 +23,16 @@ module.exports = {
     captcha = captcha.toLocaleLowerCase();
   	var correctCaptcha = req.session.correctCaptcha;
   	if(captcha != correctCaptcha){
-  		res.locals.message = 'Wrong captcha';
+  		req.session.fbMessage = 'Wrong captcha';
   		return res.redirect('/register');
   	}
     req.session.team = req.params.team;
     req.session.register = true;
+    req.session.login = false;  
   }
   else{
     req.session.register = false;   
+    req.session.login = true;  
   }
   passport.authenticate('facebook', { scope: ['email', 'user_about_me']},
         function (err, user) {
@@ -39,20 +42,36 @@ module.exports = {
   fb_authenticate_callback: function (req, res, next) {
      passport.authenticate('facebook',
         function (err, user, info) {
-          if(user){
-            req.session.user = user;
+          if(user){            
             if(!user.team)
             {
-              var teams = ['astu', 'blackdragon', 'sorcesec'];
-              var num = Math.floor(Math.random() * team.length);
-              User.update({id: user.id}, {team: req.session.team || teams[num]})
-              .exec(function(err, result){
-                  req.session.team = null;
-                  req.session.user = result[0];
-                  return res.redirect('/profile/' + user.id);
-              })
+              if(req.session.register){
+                User.update({id: user.id}, {team: req.session.team})
+                .exec(function(err, result){
+                    req.session.team = null;
+                    req.session.register = false;   
+                    req.session.login = false;   
+                    req.session.user = result[0];
+                    return res.redirect('/profile/' + user.id);
+                });
+              }else {
+                //If we got here - it means that user wasn't registered
+                //  and just tried to log in with fb.
+                console.log('removing user ' + user.id + ', fb id: ' + user.fb_id);
+                User.destroy({id: user.id})
+                .exec(function(err, result){
+                    req.session.team = null;
+                    req.session.register = false;   
+                    req.session.login = false;   
+                    req.session.user = null;
+                    return res.redirect('/');
+                });
+              }
             }else{
               req.session.team = null;
+              req.session.register = false;   
+              req.session.login = false;  
+              req.session.user = user;
               return res.redirect('/profile/' + user.id);
             }
           }

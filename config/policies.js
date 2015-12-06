@@ -35,8 +35,8 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
   ViewsController:{
-    '*':'lastOnline',
-    'admin':'isAdmin'
+    '*': ['lastOnline', 'teamsScore'],
+    'admin':['isAdmin', 'teamsScore']
   },
 
   CategoryController:{

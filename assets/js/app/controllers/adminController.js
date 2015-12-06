@@ -68,6 +68,7 @@ app.controller('AdminController', ['$http', '$scope',
 		}
 
 		me.addGame = function(cat, index){
+			console.log(index);
 			if(!cat.gameModel.name){
 				return;
 			}
@@ -86,9 +87,14 @@ app.controller('AdminController', ['$http', '$scope',
 			.success(function(data){
 				$http.get('/api/category/' + cat.id)
 				.success(function(data){
-					me.categories[index] = me.mapCategory(data);
-					me.categories[index].isExpanded = true;
-					me.loading = false;
+					for (var i = me.categories.length - 1; i >= 0; i--) {
+						if(me.categories[i].id == data.id){
+							me.categories[i] = me.mapCategory(data);
+							me.categories[i].isExpanded = true;
+							me.loading = false;		
+							return;
+						}
+					};					
 				});
 			})
 			.error(function(data){

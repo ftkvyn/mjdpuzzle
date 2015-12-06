@@ -36,8 +36,9 @@
 		    </fieldset>
 
 		    <fieldset class='margin-top'>
-		        <legend>Crack your first code</legend>
-		        <h4>Speak, friend, and enter!</h4>
+		        <legend>Crack your first code, complete the sentence from the book</legend>
+		        <h4><strong>Chapter <%= code.chapter %>, paragraph <%= code.paragraph %></strong></h4>
+		        <h4><%- code.sentence %></h4>
 		        <div class="form-group">
 		            <label for="pass-conf" class="col-md-3 control-label">Enter the code</label>
 		            <div class="col-md-8">
@@ -56,8 +57,8 @@
 			      <%- message%>
 			    <% } %>		
 		    </div>
-		    <div class='error' ng-show='auth.model.message'>
-		    	{{auth.model.message}}
+		    <div class='error' ng-show='auth.model.registerMessage'>
+		    	{{auth.model.registerMessage}}
 		    </div>
 		    <fieldset class='margin-top'>
 		    	<div class='col-md-6' style='border-right:1px solid #d2d2d2'>

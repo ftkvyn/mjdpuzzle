@@ -9,22 +9,25 @@ var fs = require('fs');
 
 module.exports = {
 	home: function(req,res){
-		return res.view('home', {
-			locals:{currentUser : req.session.user}
-		});
+		return res.view('home');
 	},
 
 	register: function(req,res){
-		res.locals.message = null;
 		req.session.message = null;
+		if(req.session.fbMessage){
+			req.session.message = req.session.fbMessage;
+			req.session.fbMessage = null;
+		}		
 		if(!req.session.message){
 			req.session.message = '';
 		}
-		req.session.correctCaptcha = 'friend';
 		req.session.captcha = null;
 		req.session.team = null;
+		var code = registerCodes.getCode();
+		req.session.correctCaptcha = code.code;
+		code.code = null;
 		res.view('register', {
-			locals:{currentUser : req.session.user, message: req.session.message}
+			locals:{message: req.session.message, code: code}
 		});		
 	},
 
@@ -41,20 +44,18 @@ module.exports = {
 				console.log(err);
 				return res.redirect('/notFound');
 			}
-			Category.find()
-			.sort('order')
-			.populate('games')
-			.exec(function(err, categories){
+			gamesService.getCategoriesWithGames(userId, function(err, categories){
+				if(err){
+					console.log(err);
+				}
 				res.view('profile', {
 					locals:{
-						currentUser : req.session.user, 
 						user: user, 
 						message: req.session.message,
 						categories: categories
 					}
 				});	
-			});		
-			
+			});
 		});		
 	},
 
@@ -72,34 +73,37 @@ module.exports = {
 				return res.redirect('/notFound');
 			}
 			res.view('editProfile', {
-				locals:{currentUser : req.session.user, user: user, message: req.session.message}
+				locals:{user: user, message: req.session.message}
 			});	
 		})
 	},
 
 	admin: function(req,res){
 		res.locals.layout = 'adminLayout.ejs';
-		res.view('admin/main',{
-			locals:{currentUser : req.session.user}
-		});		
+		res.view('admin/main');		
 	},
 
 	recoverPassword: function(req,res){
-		res.view('recoverPassword', {
-			locals:{currentUser : req.session.user}
-		});		
+		res.view('recoverPassword');		
 	},
 
 	rankings: function(req,res){
-		res.view('rankings', {
-			locals:{currentUser : req.session.user}
+		gamesService.getRankings(function(err, users){
+			res.view('rankings', {
+				locals:{users: users}
+			});		
 		});		
 	},
 
 	points: function(req,res){
-		res.view('points', {
-			locals:{currentUser : req.session.user}
-		});		
+		gamesService.getCategoriesWithGames(req.session.user.id, function(err, categories, data){
+			if(err){
+				console.log(err);
+			}
+			res.view('points', {
+				locals:{data: data, categories: categories}
+			});		
+		});
 	},
 
 	challenges: function(req,res){
@@ -109,21 +113,17 @@ module.exports = {
 		.populate('games')
 		.exec(function(err, category){
 			res.view('challenges', {
-				locals:{currentUser : req.session.user, challenge: category}
+				locals:{challenge: category}
 			});		
 		});		
 	},
 
 	about: function(req,res){
-		res.view('about', {
-			locals:{currentUser : req.session.user}
-		});		
+		res.view('about');		
 	},
 
 	books: function(req,res){
-		res.view('books', {
-			locals:{currentUser : req.session.user}
-		});		
+		res.view('books');		
 	},
 
 	game: function(req,res){
@@ -132,7 +132,7 @@ module.exports = {
 		.populate('category')
 		.populate('author')
 		.exec(function(err, game){
-			var data = {currentUser : req.session.user, game : game};
+			var data = {currentUser : req.session.user, teams: res.locals.teams, game : game};
 			fs.readFile(sails.config.appPath + '/views/layout.ejs', 'utf8', function (err, layout) {
 				var index = layout.indexOf('<%- body %>');				
 				var header = layout.substring(0, index);
@@ -146,10 +146,6 @@ module.exports = {
 					res.send(html);
 				});
 			});
-			
-			// res.view('game', {
-			// 	locals:{currentUser : req.session.user, game : game}
-			// });				
 		});
 		
 	},

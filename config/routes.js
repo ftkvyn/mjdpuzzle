@@ -55,11 +55,15 @@ module.exports.routes = {
 
   'post /auth/recoverPassword': 'AuthController.recoverPassword',
 
-  //ToDo: different links for log in and register.
   'get /auth/facebook/callback': 'AuthController.fb_authenticate_callback',
 
-  'get /auth/facebook/:reg?/:team?/:captcha?': 'AuthController.fb_authenticate',
+  'get /auth/facebook/:register?/:team?/:captcha?': 'AuthController.fb_authenticate',
 
   'get /auth/logout': 'AuthController.logout',
+
+  //Games
+  'get /api/games/nextGameId/:id': 'GameController.nextGame',
+
+  'post /api/games/success/': 'GameResultController.save'
 
 };

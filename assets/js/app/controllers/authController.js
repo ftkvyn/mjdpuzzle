@@ -1,5 +1,5 @@
-app.controller('AuthController', ['$http', '$scope',
-	function($http, $scope){
+app.controller('AuthController', ['$http', 
+	function($http){
 		var me = this;
 		me.model = {};
 		me.message = null;
@@ -105,15 +105,15 @@ app.controller('AuthController', ['$http', '$scope',
 				return;
 			}
 			me.registering = true;
-			me.model.message = '';
+			me.model.registerMessage = '';
 			$http.post('/auth/register', me.model)
 			.success(function(data){	
 				me.registering = false;
 				if(!data.success){
 					if(data.badCaptcha){
-						me.model.message = 'Captcha is wrong';
+						me.model.registerMessage = 'Code is wrong';
 					}else{
-						me.model.message = data.message;
+						me.model.registerMessage = data.message;
 						return;
 					}					
 				}else{

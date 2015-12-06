@@ -32,16 +32,41 @@
       <div class='jumbotron center page-title alt-back'>
         <h1>Balance of power</h1>
         <div class='score'>
-          <div class='part sorcesec'>SorceSec 20%</div>
-          <div class='part dragon'>Black Dragon 30%</div>
-          <div class='part astu'>ASTU 50%</div>
+          <% if(teams.sorcesec) {%>
+          <div class='part sorcesec' style='width:<%= teams.sorcesec %>%;'
+            title='SorceSec <%= teams.sorcesec %>%'>
+            SorceSec <%= teams.sorcesec %>%
+          </div>
+          <%}%>
+          <% if(teams.blackdragon) {%>
+          <div class='part dragon' style='width:<%= teams.blackdragon %>%;'
+            title='Black Dragon <%= teams.blackdragon %>%'>
+            Black Dragon <%= teams.blackdragon %>%
+          </div>
+          <%}%>
+          <% if(teams.astu) {%>
+          <div class='part astu' style='width:<%= teams.astu %>%;'
+            title='ASTU <%= teams.astu %>%'>
+            ASTU <%= teams.astu %>%
+          </div>
+          <%}%>
         </div>
         <div class='center'>
-          ASTU is winning now.
+          <% if(teams.best == 'astu'){%>
+          ASTU
+          <% } %>
+          <% if(teams.best == 'blackdragon'){%>
+            Black Dragon
+          <% } %>
+          <% if(teams.best == 'sorcesec'){%>
+            SourceSec
+          <% } %> is winning now.
         </div>
+        <% if(!currentUser){ %>
         <div class='center'>
-          <a href="/register">Sign in</a> and <a href="/challenges">complete challenges</a> to help your team hold the Balance of Power!
+          <a href="/register">Sign in</a> and complete challenges to help your team hold the Balance of Power!
         </div>
+        <% } %> 
       </div>
       <div class='row'>
         <div class='col-md-2'>
@@ -141,7 +166,7 @@
           <div class='tabs'>
             <a href="/"><div class='alt-back'>Home</div></a>
             <a href="/about"><div class='alt-back'>About the Site</div></a>
-            <a href="/books"><div class='alt-back'>Buy the books</div></a>
+            <a href="http://www.amazon.co.uk/dp/0993415504"><div class='alt-back'>Buy the books</div></a>
           </div>
           <div class="panel panel-default">              
               <div class="panel-body">
@@ -152,9 +177,9 @@
         <div class='col-md-2'>
           <img src="/images/mjd_tree_ph.png" style='width: 100%;'/>
           <div class='clear center'>
-            <a href="/">Main site</a>
+            <a href="http://markjdiez.com/">Main site</a>
             |
-            <a href="/">Wiki</a>
+            <a href="http://markjdiez.com/doku/doku.php">Wiki</a>
           </div>
           <div class='clear center margin-top'>
             Find us elsewhere
@@ -162,23 +187,38 @@
           <div class='row'>
             <div class='col-md-4'>
               <div class='icon'>
-                <img src="/images/facebook_40.png" alt='Facebook' title='Facebook'>
+                <a href="https://www.facebook.com/MarkJDiezAuthor">
+                  <img src="/images/facebook_40.png" alt='Facebook' title='Facebook'>
+                </a>
               </div>              
             </div>
             <div class='col-md-4'>
               <div class='icon'>
-                <img src="/images/twitter-icon.png" alt='Twitter' title='Twitter'>
+                <a href="https://twitter.com/markjdiez">
+                  <img src="/images/twitter-icon.png" alt='Twitter' title='Twitter'>
+                </a>
               </div>              
             </div>
             <div class='col-md-4'>
               <div class='icon'>
-                <img src="/images/youtube-small.png" alt='Youtube' title='Youtube'>
+                <a href="https://www.youtube.com/channel/UCZd-lVS0hqJhPRa23Qaoxag/">
+                  <img src="/images/youtube-small.png" alt='Youtube' title='Youtube'>
+                </a>
               </div>              
             </div>
           </div>
-          <div class="panel panel-default margin-top" style='height:400px;'>
-              <div class="panel-body center">
-                  Advert goes here
+          <div class="panel panel-default margin-top" 
+          style='height:400px;width:170px;'>
+              <div class="panel-body center" style='padding:0;'>
+                  <a href="http://www.amazon.co.uk/dp/0993415504">
+                    <% var num = Math.random(); if(num < 0.3333){%>
+                    <img src="/images/hannover-right-side-advert-001.png"/>
+                    <%} else if( num < 0.6667) {%>
+                    <img src="/images/hannover-right-side-advert-002.png"/>
+                    <%} else {%>
+                    <img src="/images/hannover-right-side-advert-003.png"/>
+                    <%} %>
+                  </a>
               </div>              
           </div>
         </div>

@@ -1,4 +1,4 @@
-<div class='game-container'>
+<div class='game-container' ng-init='games.initGame("<%= game.id%>")'>
 	<h1>Challenges - <%= game.category.name%></h1>
 	<table class='table center'>
 		<tr>
@@ -21,13 +21,43 @@
 		</tr>
 	</table>
 	<div class='game-body'>
-		<% if(game.viewStyle){%>
+		<% if(game.viewPage){%>
 			<%- include(game.viewPage) %>
 		<% }%>
 	</div>	
 	<div class='actions center'>
-		<button class='btn btn-warning'>Restart</button>
-		<button class='btn btn-danger'>Quit</button>
-		<button class='btn btn-success'>Submit solution</button>
+		<button class='btn btn-warning' ng-click='games.reload()'>Restart</button>
+		<a href="/" class='btn btn-danger'>Quit</a>
+		<button class='btn btn-success' ng-click='games.checkSolution()'>Submit solution</button>
+	</div>
+	<div class='customModal overlay ng-hide' ng-show='games.modalSuccess'>
+		<div class='panel panel-info'>
+			<div class="panel-heading">
+	              <h3 class="panel-title">Congratulations!</h3>
+	        </div>
+			<div class='panel-body'>
+				Your solution is right!
+			</div>
+			<div class='panel-footer'>
+				<button class='btn btn-success' ng-click='games.nextGame()'>
+					Next game
+				</button>				
+			</div>
+		</div>
+	</div>
+	<div class='customModal overlay ng-hide' ng-show='games.modalFail'>
+		<div class='panel panel-warning'>
+			<div class="panel-heading">
+	              <h3 class="panel-title">Oups!</h3>
+	        </div>
+			<div class='panel-body'>
+				Your solution is wrong, try again.
+			</div>
+			<div class='panel-footer'>
+				<button class='btn btn-primary' ng-click='games.reload()'>
+					Try again
+				</button>				
+			</div>
+		</div>
 	</div>
 </div>

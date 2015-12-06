@@ -43,6 +43,14 @@ module.exports = {
 	viewPage: {
 		type: 'string',
 	},
+  },
+
+  afterDestroy: function (values, cb) {
+  	var ids = values.map(function(v){return v.id});
+  	GameResult.destroy({game: ids})
+  	.exec(function(){
+  		cb();
+  	});
   }
 };
 
