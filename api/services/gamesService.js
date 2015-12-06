@@ -79,25 +79,31 @@ exports.getTeamResults = function(cb){
 	GameResult.find()
 	.populate('user')
 	.exec(function(err, results){
-		var teams = {
-			'null': 0,
-			'astu' : 0, 
-			'blackdragon' : 0, 
-			'sorcesec' : 0
-		};
-		var total = 0;
-		for (var i = results.length - 1; i >= 0; i--) {
-			teams[results[i].user.team] += results[i].points;
-			total += results[i].points
-		};
-		var best = 'null';
-		for(var t in teams){
-			teams[t] = Math.round(100 * teams[t] / total);
-			if(teams[t] > teams[best]){
-				best = t;
+		try{
+			console.log(results);
+			var teams = {
+				'null': 0,
+				'astu' : 0, 
+				'blackdragon' : 0, 
+				'sorcesec' : 0
+			};
+			var total = 0;
+			for (var i = results.length - 1; i >= 0; i--) {
+				teams[results[i].user.team] += results[i].points;
+				total += results[i].points
+			};
+			var best = 'null';
+			for(var t in teams){
+				teams[t] = Math.round(100 * teams[t] / total);
+				if(teams[t] > teams[best]){
+					best = t;
+				}
 			}
+			teams.best = best;
+			cb(teams);
 		}
-		teams.best = best;
-		cb(teams);
+		catch(ex){
+			cb({});	
+		}
 	});
 }
