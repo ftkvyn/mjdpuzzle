@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Puzzle</title>
+    <title>The Hannover Game</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
@@ -30,7 +30,7 @@
     <div class='contaner' ng-controller='GamesController as games'
     ng-init='games.loadCategories()'>
       <div class='jumbotron center page-title alt-back'>
-        <h1>Balance of power</h1>
+        <h1>Balance of Power</h1>
         <div class='score'>
           <% if(teams.sorcesec) {%>
           <div class='part sorcesec' style='width:<%= teams.sorcesec %>%;'
@@ -67,7 +67,7 @@
         </div>
         <% if(!currentUser){ %>
         <div class='center'>
-          <a href="/register">Sign in</a> and complete challenges to help your team hold the Balance of Power!
+          <a href="/register">Sign in</a> and complete challenges to help your team shift the Balance of Power!
         </div>
         <% } %> 
       </div>
@@ -110,7 +110,7 @@
                       </div>
                       <div class='clear center'>
                         <h3>OR</h3>
-                        Login with your facebook account
+                        Login with your Facebook account
                       </div>
                       <div class='clear center'>
                         <a href="/auth/facebook" class="btn btn-info">Fb login</a>
@@ -128,7 +128,7 @@
               <div class="panel-body">
                   <img style='width: 100%;' ng-src="{{auth.currentUser.profilePicLarge}}"/>
                   <a href="/profile">Profile </a><a href="/edit"> (edit)</a><br/>
-                  <a href="/auth/logout">Log out</a>
+                  <a href="/auth/logout">Sign out</a>
               </div>
           </div>
           <div class="panel panel-default links-section">
@@ -148,7 +148,7 @@
                   </ul>
 
                   <strong>
-                    The Challenges
+                    Challenges
                   </strong>
                   <ul>
                     <li ng-repeat='cat in games.categories | orderBy: "order"'>
@@ -159,9 +159,9 @@
           </div>
 
           <div class="panel panel-default">
-              <div class="panel-heading">Static box</div>
+              <div class="panel-heading">Status</div>
               <div class="panel-body">
-                  Some data here
+                  Under Development
               </div>
           </div>
         </div>
@@ -169,7 +169,7 @@
           <div class='tabs'>
             <a href="/"><div class='alt-back'>Home</div></a>
             <a href="/about"><div class='alt-back'>About the Site</div></a>
-            <a href="http://www.amazon.co.uk/dp/0993415504"><div class='alt-back'>Buy the books</div></a>
+            <a href="http://www.amazon.co.uk/dp/0993415504" target="book"><div class='alt-back'>Buy the books</div></a>
           </div>
           <div class="panel panel-default">              
               <div class="panel-body">
@@ -180,12 +180,12 @@
         <div class='col-md-2'>
           <img src="/images/mjd_tree_ph.png" style='width: 100%;'/>
           <div class='clear center'>
-            <a href="http://markjdiez.com/">Main site</a>
+            <a href="http://markjdiez.com/" target="site">Main site</a>
             |
-            <a href="http://markjdiez.com/doku/doku.php">Wiki</a>
+            <a href="http://markjdiez.com/doku/doku.php" target="site">Wiki</a>
           </div>
           <div class='clear center margin-top'>
-            Find us elsewhere
+            Get Social
           </div>
           <div class='row'>
             <div class='col-md-4'>
@@ -197,14 +197,14 @@
             </div>
             <div class='col-md-4'>
               <div class='icon'>
-                <a href="https://twitter.com/markjdiez">
+                <a href="https://twitter.com/markjdiez" target="social">
                   <img src="/images/twitter-icon.png" alt='Twitter' title='Twitter'>
                 </a>
               </div>              
             </div>
             <div class='col-md-4'>
               <div class='icon'>
-                <a href="https://www.youtube.com/channel/UCZd-lVS0hqJhPRa23Qaoxag/">
+                <a href="https://www.youtube.com/channel/UCZd-lVS0hqJhPRa23Qaoxag/" target="social">
                   <img src="/images/youtube-small.png" alt='Youtube' title='Youtube'>
                 </a>
               </div>              
@@ -213,7 +213,7 @@
           <div class="panel panel-default margin-top" 
           style='height:400px;width:170px;'>
               <div class="panel-body center" style='padding:0;'>
-                  <a href="http://www.amazon.co.uk/dp/0993415504">
+                  <a href="http://www.amazon.co.uk/dp/0993415504" target="book">
                     <% var num = Math.random(); if(num < 0.3333){%>
                     <img src="/images/hannover-right-side-advert-001.png"/>
                     <%} else if( num < 0.6667) {%>
@@ -230,6 +230,7 @@
         <div class="panel panel-default margin-top alt-back">
               <div class="panel-body center">
                   <h2>Footer</h2>
+                  <p>This is the footer panel where we can add some information and links.</p>
               </div>              
           </div>
       </div>
