@@ -6,16 +6,32 @@
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
   
+    <!-- Other meta-tags -->
+    <meta name="description" CONTENT="Mark J Diez, Fiction author of the Hannover series and Tales of Malartu">
+    <meta name="keywords" CONTENT="Malartu, Hannover, Fiction, ASTU, SorceSek, Broer, Nelson, Aggard, Author, Writing, Kindle, Ebook">
+    <meta name="resource-type" CONTENT="Document">
+    <meta name="robots" CONTENT="ALL">
+    <meta name="revisit-after" CONTENT="30 days">
+    <meta name="classification" CONTENT="Books">
+    <meta name="rating" CONTENT="General">
+    <meta name="distribution" CONTENT="GLOBAL">
+    <meta name="language" CONTENT="en">
+    <meta name="copyright" CONTENT="Copyright 2015 Mark J Diez">    
 
+    <!-- Include Style Sheets --> 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
     <link href="/css/roboto.min.css" rel="stylesheet">
     <link href="/css/material.min.css" rel="stylesheet">
     <link href="/css/ripples.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
+      
+    <!-- Include JavaScript files -->
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     
+    <!-- Pintrest verification -->
+    <meta name="p:domain_verify" content="9fb3c0e8ceac0ee196d15d064386b9a4"/>
+      
   </head>
 
   <body ng-app='puzzle'
@@ -27,7 +43,7 @@
       auth.loggedIn=true;auth.currentUser=<%-JSON.stringify(currentUser)%>; 
     <% } %>
      '>
-    <div class='contaner' ng-controller='GamesController as games'
+    <div class='container' ng-controller='GamesController as games'
     ng-init='games.loadCategories()'>
       <div class='jumbotron center page-title alt-back'>
         <h1>Balance of Power</h1>
@@ -35,7 +51,7 @@
           <% if(teams.sorcesec) {%>
           <div class='part sorcesec' style='width:<%= teams.sorcesec %>%;'
             title='SorceSec <%= teams.sorcesec %>%'>
-            SorceSec <%= teams.sorcesec %>%
+            SorceSek <%= teams.sorcesec %>%
           </div>
           <%}%>
           <% if(teams.blackdragon) {%>
@@ -59,7 +75,7 @@
             Black Dragon
           <% } %>
           <% if(teams.best == 'sorcesec'){%>
-            SourceSec
+            SourceSek
           <% } %> 
           <% if(teams.best){%>
           is winning now.
@@ -113,7 +129,7 @@
                         Login with your Facebook account
                       </div>
                       <div class='clear center'>
-                        <a href="/auth/facebook" class="btn btn-info">Fb login</a>
+                        <a href="/auth/facebook" class="btn btn-info">Facebook login</a>
                       </div>
                       <div class='clear center'>
                         <a href="/register">Sign up</a>
@@ -190,7 +206,7 @@
           <div class='row'>
             <div class='col-md-4'>
               <div class='icon'>
-                <a href="https://www.facebook.com/MarkJDiezAuthor">
+                <a href="https://www.facebook.com/MarkJDiezAuthor" target="social">
                   <img src="/images/facebook_40.png" alt='Facebook' title='Facebook'>
                 </a>
               </div>              
