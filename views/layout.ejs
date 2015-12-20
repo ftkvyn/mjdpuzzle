@@ -92,7 +92,7 @@
           <div><%= (new Date()).toDateString() %></div>
           <div class="panel panel-primary ng-hide" ng-hide='auth.loggedIn'>
               <div class="panel-heading">
-                  <h3 class="panel-title">Please, enter</h3>
+                  <h3 class="panel-title">Please Sign in</h3>
               </div>
               <div class="panel-body">
                   <form ng-submit='auth.login()'>
@@ -121,8 +121,11 @@
                       <div class='clear center'>
                         <a href="/recoverPassword">Forgot password?</a>
                       </div>
+                      <div class='clear center'>
+                        <h3>OR</h3>
+                      </div>
                        <div class='clear center'>
-                        <a href="/register">New user? JOIN NOW</a>
+                        <a href="/register">JOIN NOW</a>
                       </div>
                       <div class='clear center'>
                         <h3>OR</h3>
@@ -130,10 +133,7 @@
                       </div>
                       <div class='clear center'>
                         <a href="/auth/facebook" class="btn btn-info">FB login</a>
-                      </div>
-                      <div class='clear center'>
-                        <a href="/register">Sign up</a>
-                      </div>                      
+                      </div>                     
                   </form>
               </div>
           </div>
