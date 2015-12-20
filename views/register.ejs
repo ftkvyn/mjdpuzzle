@@ -8,7 +8,7 @@
 	<div class='margin-top'>
 		<form class="form-horizontal">
 		    <fieldset class='margin-top'>
-		        <legend>Choose your team 
+		        <legend>Choose your Team 
 		        	<span class="badge" title='Choose wisely, you cannot change easily!'>?</span></legend>
 		        <div class="form-group">
 		            <div 
@@ -40,7 +40,7 @@
 		        <h4><strong>Chapter <%= code.chapter %>, Paragraph <%= code.paragraph %></strong></h4>
 		        <h4><%- code.sentence %></h4>
 		        <div class="form-group">
-		            <label for="pass-conf" class="col-md-3 control-label">Enter the code</label>
+		            <label for="pass-conf" class="col-md-3 control-label">Enter the Code</label>
 		            <div class="col-md-8">
 		                <input type="text" 
 		                ng-model='auth.model.captcha'
@@ -88,7 +88,7 @@
 			            </div>
 			        </div>
 			        <div class="form-group">
-			            <label for="pass-conf" class="col-md-3 control-label">Confirm password</label>
+			            <label for="pass-conf" class="col-md-3 control-label">Confirm Password</label>
 			            <div class="col-md-9">
 			                <input type="password" 
 			                ng-model='auth.model.passwordConfirm'
@@ -104,7 +104,7 @@
 		        <div class='col-md-6'>
 		        	<legend>Or use your Facebook account</legend>
 		        	<div class="form-group center">
-			            <a ng-href='/auth/facebook/true/{{auth.model.team}}/{{auth.model.captcha}}' ng-disabled='!auth.validateFb()' class='btn btn-info btn-raised'>Login with facebook</a>
+			            <a ng-href='/auth/facebook/true/{{auth.model.team}}/{{auth.model.captcha}}' ng-disabled='!auth.validateFb()' class='btn btn-info btn-raised'>Login with Facebook</a>
 			        </div>
 		        </div>
 		    </fieldset>
