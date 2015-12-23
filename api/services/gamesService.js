@@ -13,18 +13,18 @@ exports.getCategoriesWithGames = function(userId, cb){
 		var categories = data[0];
 		var results = data[1];
 		var total = 0, earned = 0;
-		for (var r = results.length - 1; r >= 0; r--) {
-			for (var c = categories.length - 1; c >= 0; c--) {
-				categories[c].complete = 0;
-				if(categories[c].games){
-					for (var g = categories[c].games.length - 1; g >= 0; g--) {
+		for (var c = categories.length - 1; c >= 0; c--) {
+			categories[c].complete = 0;			
+			if(categories[c].games){
+				for (var g = categories[c].games.length - 1; g >= 0; g--) {
+					for (var r = results.length - 1; r >= 0; r--) {
 						if(results[r].game == categories[c].games[g].id){
 							categories[c].games[g].isComplete = true;
 							earned += categories[c].games[g].points;
 							categories[c].complete++;
-						}
-						total += categories[c].games[g].points;
+						}						
 					}
+					total += categories[c].games[g].points;
 				}
 			}
 		};
