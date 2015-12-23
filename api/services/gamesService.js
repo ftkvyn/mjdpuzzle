@@ -80,7 +80,6 @@ exports.getTeamResults = function(cb){
 	.populate('user')
 	.exec(function(err, results){
 		try{
-			console.log(results);
 			var teams = {
 				'null': 0,
 				'astu' : 0, 
