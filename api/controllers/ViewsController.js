@@ -127,6 +127,9 @@ module.exports = {
 	},
 
 	game: function(req,res){
+		if(!req.session.user){
+			return res.redirect('/register');
+		}
 		var id = req.params.id;
 		Game.findOne(id)
 		.populate('category')
